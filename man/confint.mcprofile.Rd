@@ -1,0 +1,28 @@
+\name{confint.mcprofile}
+\alias{confint.mcprofile}
+\title{Simultaneous Confidence Intervals for Multiple Contrast Profiles}
+\description{Calculates simultaneous confidence intervals based on
+  signed root deviance profiles from function mcpcalc.}
+\usage{
+\method{confint}{mcprofile}(object, parm, level = 0.95,
+    adjust = c("single-step", "none", "bonferroni"),
+    alternative = c("two.sided", "less", "greater"), ...)
+}
+\arguments{
+  \item{object}{An object of class mcprofile}
+  \item{parm}{Just ignore this...}
+  \item{level}{Simultaneous confidence level (1-alpha), default at 0.95}
+  \item{adjust}{a character string specifying the adjustment for
+    multiplicity. "single-step" controlling the FWER utilizing a multivariate normal- or
+    t-distribution; "none" for comparison-wise error rate; "bonferroni"
+    applying a Bonferroni correction.}
+  \item{alternative}{a character string specifying if two- or one-sided
+    confidence intervals should be computed}
+  \item{\dots}{...}
+}
+\value{An object of class mcpCI}
+\author{Daniel Gerhard}
+
+\seealso{\code{\link[MASS]{confint.glm}}, \code{\link{mcprofile}}, \code{\link[multcomp]{confint.glht}}}
+
+\keyword{ htest }

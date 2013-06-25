@@ -1,0 +1,16 @@
+export(mcprofile, orglm.fit, wald, hoa, mcprofileControl)
+exportClasses("mcprofile", "mcpCI", "mcpSummary", "mcprofileControl")
+
+S3method(mcprofile, lm)
+S3method(mcprofile, glm)
+S3method(print, mcprofile)
+S3method(plot, mcprofile)
+S3method(summary, mcprofile)
+S3method(confint, mcprofile)
+S3method(print, mcpCI)
+S3method(plot, mcpCI)
+S3method(exp, mcpCI)
+S3method(expit, mcpCI)
+S3method(print, mcpSummary)
+
+
