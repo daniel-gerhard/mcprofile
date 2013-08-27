@@ -1,12 +1,13 @@
 
-hoa <- function(object){
+hoa <- function(object, removecenter=0.6){
   model <- object$object
   CM <- object$CM
   sumobj <- summary(model)
   Kuv <- sumobj$cov.unscaled
   r <- lapply(object$srdp, function(sr) sr[, 2])
   q <- lapply(wald(object)$srdp, function(sr) sr[, 2])
-  vcc <- 1 / diag(CM %*% vcov(model) %*% t(CM))
+  vc <- diag(CM %*% vcov(model) %*% t(CM))
+  vcc <- 1 / vc
   j <- (1/det(Kuv))
   j.1 <- j/vcc
   
@@ -22,12 +23,24 @@ hoa <- function(object){
     x[is.infinite(x)] <- NA
     return(x)
   })
+  
+  if (!is.null(removecenter)){
+    est <- as.vector(CM %*% model$coefficients)
+    lwr <- est - removecenter*sqrt(vc)
+    upr <- est + removecenter*sqrt(vc)
+  }
+  
   rsrdp <- lapply(1:length(adjr), function(i) {
     srdpi <- object$srdp[[i]]
     b <- srdpi[, 1]
-    srdpi[, 2] <- adjr[[i]]
+    rstar <- adjr[[i]]    
+    if (!is.null(removecenter)){
+      rstar[b > lwr[i] & b < upr[i]] <- NA
+    }
+    srdpi[, 2] <- rstar
     return(na.omit(srdpi))
-  })
+  })  
+  
   rest <- sapply(rsrdp, function(x) {
     x <- na.omit(x)
     ispl <- try(interpSpline(x[, 1], x[, 2]), silent = TRUE)
