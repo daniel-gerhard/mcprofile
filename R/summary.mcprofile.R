@@ -86,7 +86,7 @@ function(object, margin=0, adjust="single-step", alternative=c("two.sided","less
   out$estimate = est
   out$alternative <- alternative[1]
   out$adjust <- adjust[1]
-  out$cr <- cr
+  #out$cr <- cr
   out$df <- df
   class(out) <- "mcpSummary"
   return(out)
