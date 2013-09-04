@@ -1,4 +1,3 @@
-
 hoa <- function(object, removecenter=0.6){
   model <- object$object
   CM <- object$CM
@@ -6,15 +5,14 @@ hoa <- function(object, removecenter=0.6){
   Kuv <- sumobj$cov.unscaled
   r <- lapply(object$srdp, function(sr) sr[, 2])
   q <- lapply(wald(object)$srdp, function(sr) sr[, 2])
-  vc <- diag(CM %*% vcov(model) %*% t(CM))
-  vcc <- 1 / vc
   j <- (1/det(Kuv))
-  j.1 <- j/vcc
+  vc <- apply(CM, 1, function(cm) det(rbind(Kuv[cm != 0, cm != 0])))
+  j.1 <- j * vc
   
   j.0 <- lapply(object$cobject, function(vm) sapply(vm, function(x) {
-    xt <- try(1/det(mcprofile:::varorglm(x)), silent = TRUE)
-    if (class(xt)[1] == "try-error") 
-      xt <- NA
+    xt <- try(1/(detvarorglm(x)), silent = TRUE)
+    if (class(xt)[1] == "try-error") xt <- NA
+    xt[xt > 10^12] <- NA
     return(xt)
   }))
   rho <- lapply(1:length(j.0), function(i) sqrt(j.1[i]/j.0[[i]]))
@@ -50,7 +48,7 @@ hoa <- function(object, removecenter=0.6){
   })
   object$srdp <- rsrdp
   object$adjestimates <- rest
-  return(object)        
+  return(object)           
 }
 
 
