@@ -47,14 +47,19 @@ mcprofile(object, CM, control = mcprofileControl(), grid=NULL)
 #######################################
 
 str(cta)
-boxplot(foci ~ conc, cta, xlab="concentration", col="lightgreen")
-## change class of cta$concentration into factor
+## change class of cta$conc into factor
 cta$concf <- factor(cta$conc, levels=unique(cta$conc))
+
+ggplot(cta, aes(y=foci, x=concf)) + 
+   geom_boxplot() +
+   geom_dotplot(binaxis = "y", stackdir = "center", binwidth = 0.2) +    
+   xlab("concentration")
+   
 
 # glm fit assuming a Poisson distribution for foci counts
 # parameter estimation on the log link
-# estimating marginal means by removing the intercept
-fm <- glm(foci ~ concf-1, data=cta, poisson(link="log"))
+# removing the intercept
+fm <- glm(foci ~ concf-1, data=cta, family=poisson(link="log"))
 
 ### Comparing each dose to the control by Dunnett-type comparisons
 # Constructing contrast matrix
