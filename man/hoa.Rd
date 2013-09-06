@@ -5,11 +5,10 @@
   deviance profile. This is only a test version. Does not use the
   correct Fisher information matrix...}
 \usage{
-hoa(object, removecenter=0.6)
+hoa(object)
 }
 \arguments{
   \item{object}{An object of class mcprofile}
-  \item{removecenter}{omits estimated statistics in the neighborhood around the estimates. default is est +- 0.6 * std.err}
 }
 \value{An object of class mcprofile with a hoa profile in the srdp slot.}
 

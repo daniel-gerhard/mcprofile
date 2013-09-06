@@ -1,4 +1,4 @@
-hoa <- function(object, removecenter=0.6){
+hoa <- function(object){
   model <- object$object
   CM <- object$CM
   sumobj <- summary(model)
@@ -22,19 +22,10 @@ hoa <- function(object, removecenter=0.6){
     return(x)
   })
   
-  if (!is.null(removecenter)){
-    est <- as.vector(CM %*% model$coefficients)
-    lwr <- est - removecenter*sqrt(vc)
-    upr <- est + removecenter*sqrt(vc)
-  }
-  
   rsrdp <- lapply(1:length(adjr), function(i) {
     srdpi <- object$srdp[[i]]
     b <- srdpi[, 1]
     rstar <- adjr[[i]]    
-    if (!is.null(removecenter)){
-      rstar[b > lwr[i] & b < upr[i]] <- NA
-    }
     srdpi[, 2] <- rstar
     return(na.omit(srdpi))
   })  
