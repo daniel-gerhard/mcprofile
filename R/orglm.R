@@ -3,7 +3,6 @@ orglm.fit <- function (x, y, weights = rep(1, nobs), start = NULL, etastart = NU
 
   ###################
   orr <- function(x, y, constr, rhs, nec){
-    require(quadprog)
     unc <- lm.fit(x, y)
     tBeta <- as.vector(coefficients(unc))
     invW <- t(x) %*% x

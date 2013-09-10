@@ -63,6 +63,7 @@ fm <- glm(foci ~ concf-1, data=cta, family=poisson(link="log"))
 
 ### Comparing each dose to the control by Dunnett-type comparisons
 # Constructing contrast matrix
+library(multcomp)
 CM <- contrMat(table(cta$concf), type="Dunnett")
 
 # calculating signed root deviance profiles

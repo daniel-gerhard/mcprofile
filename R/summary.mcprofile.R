@@ -1,6 +1,5 @@
 summary.mcprofile <-
 function(object, margin=0, adjust="single-step", alternative=c("two.sided","less","greater"), ...){
-  require(splines)
   CM <- object$CM
   est <- coefficients(object$object)
   df <- object$df
@@ -57,7 +56,6 @@ function(object, margin=0, adjust="single-step", alternative=c("two.sided","less
       }
     }
     if (adjust[1] == "single-step"){
-      require(mvtnorm)
       vc <- vcov(object$object)
       VC <- CM %*% vc %*% t(CM)
       d <- 1/sqrt(diag(VC))

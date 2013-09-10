@@ -89,11 +89,14 @@ ldest <- data.frame(limit=c(pll, wll, hll), method=c("profile","wald", "hoa"))
 ################################
 
 ggplot(toxinLD, aes(x=logdose, y=dead/(dead+alive))) + 
-  geom_ribbon(data=pdat, aes(y=estimate, ymin=lower, ymax=upper, fill=method, colour=method, linetype=method), alpha=0.1, size=0.95) +
+  geom_ribbon(data=pdat, aes(y=estimate, ymin=lower, ymax=upper, 
+              fill=method, colour=method, linetype=method), 
+              alpha=0.1, size=0.95) +
   geom_line(data=pdat, aes(y=estimate, linetype=method), size=0.95) +
   geom_point(size=3) +
   geom_hline(yintercept=ld, linetype=2) +
-  geom_segment(data=ldest, aes(x=limit, xend=limit, y=0.25, yend=-0.05, linetype=method), size=0.6, colour="grey2") +
+  geom_segment(data=ldest, aes(x=limit, xend=limit, y=0.25, yend=-0.05, 
+               linetype=method), size=0.6, colour="grey2") +
   ylab("Mortality rate")
 }
 

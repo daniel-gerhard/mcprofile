@@ -14,7 +14,6 @@ function(x){
 }
 plot.mcpCI <-
 function(x, ...){
-  require(ggplot2)
   Estimate <- x$estimate
   CM <- x$CM
   grp <- factor(rownames(CM), levels=rownames(CM)[nrow(CM):1])
@@ -38,8 +37,6 @@ function(x, ...){
 }
 
 plot.mcprofile <- function(x, ...){
-  require(ggplot2)
-  require(splines)
   sdlist <- x$srdp  
   CM <- x$CM
   nr <- sapply(sdlist, nrow)

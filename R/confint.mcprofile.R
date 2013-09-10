@@ -1,6 +1,5 @@
 confint.mcprofile <-
 function(object, parm, level=0.95, adjust=c("single-step","none","bonferroni"), alternative=c("two.sided","less","greater"), ...){
-  require(splines)
   pam <- c("bonferroni", "none", "single-step")
   if (!(adjust[1] %in% pam)) stop(paste("adjust has to be one of:", paste(pam, collapse=", ")))
   CM <- object$CM
@@ -21,7 +20,6 @@ function(object, parm, level=0.95, adjust=c("single-step","none","bonferroni"), 
     if (is.null(df)) quant <- qnorm(1-alpha/nrow(CM)) else quant <- qt(1-alpha/nrow(CM), df=df)
   }
   if (adjust[1] == "single-step" & nrow(CM) > 1){
-    require(mvtnorm)
     vc <- vcov(object$object)
     VC <- CM %*% vc %*% t(CM)
     d <- 1/sqrt(diag(VC))
