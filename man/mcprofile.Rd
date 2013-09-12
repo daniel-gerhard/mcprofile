@@ -39,7 +39,7 @@ mcprofile(object, CM, control = mcprofileControl(), grid=NULL)
 
 \seealso{\code{\link[MASS]{profile.glm}}, \code{\link[multcomp]{glht}},
   \code{\link[multcomp]{contrMat}}, \code{\link{confint.mcprofile}},
-  \code{\link{summary.mcprofile}}, \code{\link{orglm.fit}}, \code{\link[quadprog]{solve.QP}}}
+  \code{\link{summary.mcprofile}}, \code{\link[quadprog]{solve.QP}}}
 
 \examples{
 #######################################
