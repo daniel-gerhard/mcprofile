@@ -4,10 +4,11 @@
 \description{Transforms a signed root deviance profile to a modified
   likelihood root profile.}
 \usage{
-hoa(object)
+hoa(object, maxstat=10)
 }
 \arguments{
   \item{object}{An object of class mcprofile}
+  \item{maxstat}{Limits the statistic to a maximum absolute value (default=10)}
 }
 \value{An object of class mcprofile with a hoa profile in the srdp slot.}
 

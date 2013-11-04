@@ -1,4 +1,4 @@
-hoa <- function(object){
+hoa <- function(object, maxstat=10){
   model <- object$object
   CM <- object$CM
   sumobj <- summary(model)
@@ -30,6 +30,10 @@ hoa <- function(object){
     return(na.omit(srdpi))
   })  
   
+  rsrdp <- lapply(rsrdp, function(hsrdp){
+    hsrdp[abs(hsrdp[,2]) < maxstat,]        
+  })
+  
   rest <- sapply(rsrdp, function(x) {
     x <- na.omit(x)
     ispl <- try(interpSpline(x[, 1], x[, 2]), silent = TRUE)
@@ -37,6 +41,7 @@ hoa <- function(object){
     try(uniroot(pfun, range(predict(ispl)$x), obj = ispl)$root, 
         silent = TRUE)
   })
+  
   object$srdp <- rsrdp
   object$adjestimates <- rest
   return(object)           
