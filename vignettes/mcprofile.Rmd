@@ -16,7 +16,7 @@ An introduction to the mcprofile package
 Motivation
 -------------------
 
-The package mcprofile contains functions for simultaneous inference based on a set of profile statistics, controlling the family-wise error rate (FWER) at a specified level. Focus is set to testing general linear hypotheses in generalized linear models and provide a set of compatible simultaneous confidence intervals. The multiple testing framework of Hothorn et al. (2008) is adopted to signed likelihood root and modified likelihood root statistics to improve the performance especially at small sample sizes.
+The package mcprofile contains functions for simultaneous inference based on a set of profile statistics, controlling the family-wise error rate (FWER) at a specified level. Focus is set on testing general linear hypotheses in generalized linear models and provide a set of compatible simultaneous confidence intervals. The multiple testing framework of Hothorn et al. (2008) is adopted to signed likelihood root and modified likelihood root statistics to improve the performance especially at small sample sizes.
 
 
 Methods
@@ -30,7 +30,7 @@ $$ g(\mu_{i}) = \eta_{i} = \sum_{j=1}^{p} x_{ij} \beta_{j}  $$
 with a link function $g(\cdot)$, a $p$-dimensional vector of parameters $\beta_{j}$, and a $(n \times p)$ matrix with design covariates $x_{ij}$.
 Thus, the log-likelihood can be written as $l(\mu_{i}; y_{i}) = \sum_{i=1}^{n} \log f_{i}(y_{i}; \mu_{i})$. Instead of the likelihood function, the scaled deviance
 $$ D(y_{i}; \mu_{i}) = 2l(y_{i}; y_{i}) - 2l(\mu_{i}; y_{i}) $$
-can be used as a goodness-of-fit criterion. To estimate a coefficient vector $\hat{\beta}_{j}$ an iteratively re-weighted least squares algorithm can be applied for finding the minimum of the deviance function. A more detailed introduction can be found in McCullagh and Nelder (1989).
+can be used as a goodness-of-fit criterion. To estimate a coefficient vector $\hat{\beta}_{j}$ an iteratively re-weighted least squares algorithm is applied for finding the minimum of the deviance function. A more detailed introduction can be found in McCullagh and Nelder (1989).
 
 
 ### General linear hypotheses
@@ -59,7 +59,7 @@ $$ q(\vartheta_{k}) = sign \left( \hat{\vartheta}_{k} - \vartheta_{k} \right) \s
 
 $\hat{\mu}_{i}$ is the linear predictor at the maximum likelihood estimates $\hat{\beta}_{j}$. $\tilde{\mu}_{i}$ denotes the linear predictor obtained for restricted parameter estimates $\tilde{\beta}_{j}$, obtained under the $k$th linear constraint $\sum_{j=1}^{p} a_{kj}\beta_{j} = \vartheta_{k}$. $\phi$ is a dispersion parameter, which accounts for extra variation in the data. This parameter is fixed at 1 e.g. for a Binomial or Poisson model, but can also be estimated from the data, like the residual error in a Gaussian linear model. 
 
-To obtain $\tilde{\mu}_{i}$, the weighted least squares step in the IRWLS algorithm can be modified by using a weighted regression of $z$ on the design covariates $x_{1},\dots,x_{p}$ with weight $W$, which allows to apply linear equality constraints on the regression parameters at each iteration. A quadratic programming algorithm, e.g. in package quadprog, can be used to obtain the restricted parameter estimates. 
+To obtain $\tilde{\mu}_{i}$, the weighted least squares step in the IRWLS algorithm can be modified by using a weighted regression of $z$ on the design covariates $x_{1},\dots,x_{p}$ with weight $W$, which allows to apply linear equality constraints on the regression parameters at each iteration. A quadratic programming algorithm, mcprofile uses function *solve.QP()* in package *quadprog*, can be used to obtain the restricted parameter estimates. 
 
 #### Modified likelihood root
 
@@ -191,9 +191,9 @@ plot(exp(ci)) +
 
 As the default, the grid with support points, for which contrast coefficient values the profile statistics are calculated, is defined automatically. With the argument \texttt{grid}, a matrix with support points in each column defines the sequence of points in the parameter space of the contrast parameters defined in each row of the contrast matrix.
 
-For example, the profiles can be calculated for a range of 25 support values between $[-3, 5]$.
+For example, the profiles can be calculated for a range of 15 support values between $[-3, 5]$.
 ```{r grid, warning=FALSE}
-cgrid <- sapply(1:nrow(cm2), function(i) seq(-3, 5, length=25))
+cgrid <- sapply(1:nrow(cm2), function(i) seq(-3, 5, length=15))
 head(cgrid)
 
 p3 <- mcprofile(m2, cm2, grid=cgrid)
@@ -269,7 +269,7 @@ mlr <- glm(cbind(dead, alive) ~ logdose, data=toxinLD, family=binomial(link="log
 The transformed parameters $\vartheta_{k} = \sum_{j=1}^{p} a_{kj}\beta_{j}$ are representing predictions for prespecified dose levels $a_{k2}$ and intercept design coefficients $a_{k1}$. Predictions should be made for 20 logarithmic dose values between $[-1,2.3]$.
 
 ```{r lrcm, message=FALSE, warning=FALSE}
-pdose <- seq(-1,2.3, length=15)
+pdose <- seq(-1,2.3, length=7)
 cmlr <- model.matrix(~ pdose)
 rownames(cmlr) <- round(pdose, 2)
 head(cmlr)

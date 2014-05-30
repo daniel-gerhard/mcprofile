@@ -31,11 +31,11 @@ fm <- glm(cbind(dead, alive) ~ logdose, data=toxinLD, family=binomial(link="logi
 #############
 
 # contrast matrix
-pdose <- seq(-1,2.3, length=15)
+pdose <- seq(-1,2.3, length=7)
 CM <- model.matrix(~ pdose)
 
 # user defined grid to construct profiles
-mcpgrid <- matrix(seq(-11,8,length=25), nrow=25, ncol=nrow(CM))
+mcpgrid <- matrix(seq(-11,8,length=15), nrow=15, ncol=nrow(CM))
 mc <- mcprofile(fm, CM, grid=mcpgrid)
 
 ####################################
