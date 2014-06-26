@@ -1,0 +1,15 @@
+
+citEntry(entry="Article",
+         title = "Simultaneous Small Sample Inference For Linear Combinations Of Generalized Linear Model Parameters",
+         author = as.person("Daniel Gerhard"),
+         journal      = "Communications in Statistics - Simulation and Computation",
+         year         = "2014",
+         doi          = "10.1080/03610918.2014.895836",
+         
+         textVersion =
+         paste("Daniel Gerhard (2014).", 
+               "Simultaneous Small Sample Inference For Linear Combinations Of Generalized Linear Model Parameters.",
+               "Communications in Statistics - Simulation and Computation.",
+               "DOI:10.1080/03610918.2014.895836"),
+         header = "Please cite the mcprofile package by the following reference:"
+)
