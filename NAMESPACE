@@ -5,7 +5,11 @@ import(ggplot2)
 importFrom("quadprog", solve.QP)
 importFrom("splines", interpSpline)
 importFrom("mvtnorm", pmvnorm, pmvt, qmvnorm, qmvt)
-
+importFrom("stats", "coefficients", "df.residual", "family",
+             "gaussian", "lm", "lm.fit", "model.frame", "model.matrix",
+             "model.offset", "model.response", "model.weights",
+             "na.omit", "p.adjust", "pnorm", "predict", "printCoefmat",
+             "pt", "qchisq", "qf", "qnorm", "qt", "uniroot", "vcov")
 S3method(mcprofile, lm)
 S3method(mcprofile, glm)
 S3method(print, mcprofile)

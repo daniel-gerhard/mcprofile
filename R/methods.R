@@ -57,7 +57,7 @@ plot.mcprofile <- function(x, ...){
   z <- unlist(lapply(spl, function(x) x[,2]))
   spd <- data.frame(b, z, grp=pgrp)
   
-  ggplot(spd, aes(x=b, y=z)) + geom_line() + facet_wrap(~grp, scales = "free_x") + geom_hline(yintercept=0, linetype=2) + geom_point(data=sdd, shape="|")
+  ggplot(spd, aes(x=b, y=z)) + geom_line() + facet_wrap(~grp, scales = "free_x") + geom_hline(aes(yintercept=0), linetype=2) + geom_point(data=sdd, shape="|")
 }
 
 print.mcpCI <-
