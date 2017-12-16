@@ -3,7 +3,7 @@
 
 ------------------------------------------------------------------------
 
-[![minimal R version](https://img.shields.io/badge/R%3E%3D-3.1.0-6666ff.svg)](https://cran.r-project.org/) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/mcprofile)](https://cran.r-project.org/package=mcprofile) [![packageversion](https://img.shields.io/badge/Package%20version-0.2-3-orange.svg?style=flat-square)](commits/master) [![Downloads](https://cranlogs.r-pkg.org/badges/mcprofile)](https://cranlogs.r-pkg.org/)
+[![minimal R version](https://img.shields.io/badge/R%3E%3D-3.1.0-6666ff.svg)](https://cran.r-project.org/) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/mcprofile)](https://cran.r-project.org/package=mcprofile) [![Downloads](https://cranlogs.r-pkg.org/badges/mcprofile)](https://cranlogs.r-pkg.org/)
 
 ------------------------------------------------------------------------
 
