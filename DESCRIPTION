@@ -2,7 +2,8 @@ Package: mcprofile
 Title: Testing Generalized Linear Hypotheses for Generalized Linear Model Parameters by Profile Deviance
 Date: 2016-10-10
 Version: 0.2-3
-Author: Daniel Gerhard
+Authors@R: c(person("Daniel", "Gerhard", role = c("aut", "cre"),
+		     email = "00gerhard@gmail.com"))
 Maintainer: Daniel Gerhard <00gerhard@gmail.com>
 Description: Calculation of signed root deviance profiles for linear combinations of parameters in a generalized linear model. Multiple tests and simultaneous confidence intervals are provided.
 Depends: ggplot2
