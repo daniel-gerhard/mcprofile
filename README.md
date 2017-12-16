@@ -1,5 +1,5 @@
 
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/mcprofile)](https://cran.r-project.org/package=mcprofile) [![Downloads](https://cranlogs.r-pkg.org/badges/mcprofile)](https://cranlogs.r-pkg.org/)
+[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/mcprofile)](https://cran.r-project.org/package=mcprofile) [![Build Status](https://travis-ci.org/daniel-gerhard/mcprofile.svg?branch=master)](https://travis-ci.org/daniel-gerhard/mcprofile) [![Downloads](https://cranlogs.r-pkg.org/badges/mcprofile)](https://cranlogs.r-pkg.org/)
 
 mcprofile
 =========
