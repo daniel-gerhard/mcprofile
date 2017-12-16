@@ -296,13 +296,13 @@
 ## adjustment:   single-step 
 ## 
 ##          Estimate   lower upper
-## 0.01 - 0    0.511 -1.2495  2.56
-## 0.03 - 0   -0.405 -3.0527  1.87
-## 0.1 - 0     1.386 -0.0176  3.31
-## 0.3 - 0     2.159  0.8957  4.04
-## 1 - 0       2.730  1.5191  4.59
-## 3 - 0       2.813  1.6080  4.67
-## 10 - 0      2.979  1.7832  4.83</code></pre>
+## 0.01 - 0    0.511 -1.2491  2.55
+## 0.03 - 0   -0.405 -3.0520  1.87
+## 0.1 - 0     1.386 -0.0174  3.31
+## 0.3 - 0     2.159  0.8960  4.04
+## 1 - 0       2.730  1.5193  4.59
+## 3 - 0       2.813  1.6082  4.67
+## 10 - 0      2.979  1.7834  4.83</code></pre>
 <p>Compatible tests are available with the <em>summary</em> method. Here, further multiple testing adjustment is available through the function . A single test margin can be specified to define the Null-hypotheses together with a test direction. A test if the difference of the average log-number of foci is larger than 1 for any concentration level compared to the control can be calculated by</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(p2, <span class="dt">margin=</span><span class="dv">1</span>, <span class="dt">alternative=</span><span class="st">"greater"</span>)</code></pre></div>
 <pre><code>## 
@@ -342,19 +342,19 @@
 ## Fit: glm(formula = foci ~ concf - 1, family = poisson(link = "log"), 
 ##     data = cta)
 ## 
-## Quantile = 2.4364
+## Quantile = 2.4375
 ## 95% family-wise confidence level
 ##  
 ## 
 ## Linear Hypotheses:
 ##               Estimate lwr     upr    
-## 0.01 - 0 == 0  0.5108  -1.2685  2.2901
-## 0.03 - 0 == 0 -0.4055  -2.6296  1.8187
-## 0.1 - 0 == 0   1.3863  -0.1864  2.9590
-## 0.3 - 0 == 0   2.1595   0.6739  3.6451
-## 1 - 0 == 0     2.7300   1.2782  4.1818
-## 3 - 0 == 0     2.8134   1.3651  4.2617
-## 10 - 0 == 0    2.9789   1.5369  4.4209</code></pre>
+## 0.01 - 0 == 0  0.5108  -1.2693  2.2909
+## 0.03 - 0 == 0 -0.4055  -2.6306  1.8197
+## 0.1 - 0 == 0   1.3863  -0.1871  2.9597
+## 0.3 - 0 == 0   2.1595   0.6732  3.6458
+## 1 - 0 == 0     2.7300   1.2776  4.1825
+## 3 - 0 == 0     2.8134   1.3645  4.2623
+## 10 - 0 == 0    2.9789   1.5363  4.4216</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">confint</span>(w2)</code></pre></div>
 <pre><code>## 
 ##    mcprofile - Confidence Intervals 
@@ -363,13 +363,13 @@
 ## adjustment:   single-step 
 ## 
 ##          Estimate  lower upper
-## 0.01 - 0    0.511 -1.272  2.29
-## 0.03 - 0   -0.405 -2.634  1.82
-## 0.1 - 0     1.386 -0.189  2.96
-## 0.3 - 0     2.159  0.671  3.65
-## 1 - 0       2.730  1.276  4.18
-## 3 - 0       2.813  1.363  4.26
-## 10 - 0      2.979  1.534  4.42</code></pre>
+## 0.01 - 0    0.511 -1.269  2.29
+## 0.03 - 0   -0.405 -2.630  1.82
+## 0.1 - 0     1.386 -0.187  2.96
+## 0.3 - 0     2.159  0.673  3.65
+## 1 - 0       2.730  1.278  4.18
+## 3 - 0       2.813  1.365  4.26
+## 10 - 0      2.979  1.536  4.42</code></pre>
 </div>
 <div id="modified-likelihood-root-1" class="section level2">
 <h2 class="hasAnchor">
@@ -385,10 +385,10 @@
 ## 
 ##          Estimate   lower upper
 ## 0.01 - 0    0.511 -1.2525  2.50
-## 0.03 - 0   -0.405 -2.9565  1.86
-## 0.1 - 0     1.386 -0.0422  3.23
-## 0.3 - 0     2.159  0.8662  3.94
-## 1 - 0       2.730  1.4882  4.49
+## 0.03 - 0   -0.405 -2.9564  1.86
+## 0.1 - 0     1.386 -0.0421  3.23
+## 0.3 - 0     2.159  0.8663  3.94
+## 1 - 0       2.730  1.4883  4.49
 ## 3 - 0       2.813  1.5770  4.57
 ## 10 - 0      2.979  1.7520  4.73</code></pre>
 </div>
