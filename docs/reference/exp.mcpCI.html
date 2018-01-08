@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Simultaneous Confidence Intervals for Multiple Contrast Profiles — confint.mcprofile • mcprofile</title>
+<title>Transformation of Confidence Intervals — exp.mcpCI • mcprofile</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -78,54 +78,32 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Simultaneous Confidence Intervals for Multiple Contrast Profiles</h1>
+    <h1>Transformation of Confidence Intervals</h1>
     </div>
 
     
-    <p>Calculates simultaneous confidence intervals based on signed root deviance profiles from function <code><a href='mcprofile.html'>mcprofile</a></code>.</p>
+    <p>Transformation of confidence interval estimates in mcpCI objects.</p>
     
 
-    <pre class="usage"><span class='co'># S3 method for mcprofile</span>
-<span class='fu'>confint</span>(<span class='no'>object</span>, <span class='no'>parm</span>, <span class='kw'>level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
-  <span class='kw'>adjust</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"single-step"</span>, <span class='st'>"none"</span>, <span class='st'>"bonferroni"</span>),
-  <span class='kw'>alternative</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"two.sided"</span>, <span class='st'>"less"</span>, <span class='st'>"greater"</span>), <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='co'># S3 method for mcpCI</span>
+<span class='fu'>exp</span>(<span class='no'>x</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>object</th>
-      <td><p>An object of class mcprofile</p></td>
-    </tr>
-    <tr>
-      <th>parm</th>
-      <td><p>Just ignore this...</p></td>
-    </tr>
-    <tr>
-      <th>level</th>
-      <td><p>Simultaneous confidence level (1-alpha), default at 0.95</p></td>
-    </tr>
-    <tr>
-      <th>adjust</th>
-      <td><p>a character string specifying the adjustment for multiplicity. "single-step" controlling the FWER utilising a multivariate normal- or t-distribution; "none" for comparison-wise error rate; "bonferroni" applying a Bonferroni correction.</p></td>
-    </tr>
-    <tr>
-      <th>alternative</th>
-      <td><p>a character string specifying if two- or one-sided confidence intervals should be computed</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>...</p></td>
+      <th>x</th>
+      <td><p>An object of class mcpCI</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An object of class mcpCI</p>
+    <p>An object of class mcpCI with transformed estimates.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p><code><a href='http://www.rdocumentation.org/packages/MASS/topics/confint'>confint.glm</a></code>, <code><a href='mcprofile.html'>mcprofile</a></code>, <code><a href='http://www.rdocumentation.org/packages/multcomp/topics/methods'>confint.glht</a></code></p>
+    <p><code>exp</code>, <code><a href='confint.mcprofile.html'>confint.mcprofile</a></code></p>
     
 
   </div>

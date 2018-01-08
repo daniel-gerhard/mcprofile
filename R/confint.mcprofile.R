@@ -1,3 +1,17 @@
+#' Simultaneous Confidence Intervals for Multiple Contrast Profiles
+#' 
+#' Calculates simultaneous confidence intervals based on signed root deviance profiles from function \code{\link{mcprofile}}.
+#' 
+#' @param object An object of class mcprofile
+#' @param parm Just ignore this...
+#' @param level Simultaneous confidence level (1-alpha), default at 0.95
+#' @param adjust a character string specifying the adjustment for multiplicity. "single-step" controlling the FWER utilising a multivariate normal- or t-distribution; "none" for comparison-wise error rate; "bonferroni" applying a Bonferroni correction.
+#' @param alternative a character string specifying if two- or one-sided confidence intervals should be computed
+#' @param ... ...
+#' @return An object of class mcpCI
+#' @seealso \code{\link[MASS]{confint.glm}}, \code{\link{mcprofile}}, \code{\link[multcomp]{confint.glht}}
+#' @keywords htest
+
 confint.mcprofile <-
 function(object, parm, level=0.95, adjust=c("single-step","none","bonferroni"), alternative=c("two.sided","less","greater"), ...){
   pam <- c("bonferroni", "none", "single-step")

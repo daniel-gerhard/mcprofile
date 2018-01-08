@@ -1,3 +1,19 @@
+#' Multiple Testing of General Hypotheses
+#' 
+#' Multiple contrast testing based on signed root deviance profiles.
+#' 
+#' @param object an object of class mcprofile
+#' @param margin test margin, specifying the right hand side of the hypotheses.
+#' @param adjust a character string specifying the adjustment for multiplicity. "single-step" controlling the FWER utilizing a multivariate normal- or t-distribution; "none" for comparison-wise error rate, or any other method provided by \code{\link{p.adjust}}.
+#' @param alternative a character string specifying the alternative hypothesis.
+#' @param ... ...
+#' 
+#' @return An object of class mcpSummary
+#' 
+#' @seealso \code{\link{mcprofile}}, \code{\link[multcomp]{summary.glht}}
+#' 
+#' @keywords htest
+
 summary.mcprofile <-
 function(object, margin=0, adjust="single-step", alternative=c("two.sided","less","greater"), ...){
   CM <- object$CM

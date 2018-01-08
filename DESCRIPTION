@@ -1,7 +1,7 @@
 Package: mcprofile
 Title: Testing Generalized Linear Hypotheses for Generalized Linear Model Parameters by Profile Deviance
-Date: 2017-12-17
-Version: 0.2-4
+Date: 2018-01-09
+Version: 1.0-0
 Authors@R: c(person("Daniel", "Gerhard", role = c("aut", "cre"),
 		     email = "00gerhard@gmail.com"))
 Maintainer: Daniel Gerhard <00gerhard@gmail.com>
@@ -13,3 +13,4 @@ LazyData: yes
 License: GPL (>=2)
 VignetteBuilder: knitr
 Suggests: knitr, multcomp, MASS
+RoxygenNote: 6.0.1

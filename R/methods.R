@@ -1,17 +1,5 @@
-exp.mcpCI <-
-function(x){
-  x$estimate <- exp(x$estimate)
-  x$confint <- exp(x$confint)
-  return(x)
-}
 expit <- function(x) 1/(1 + exp(-x))
-expit.mcpCI <-
-function(x){
-  expit <- function(x) 1/(1 + exp(-x))
-  x$estimate <- expit(x$estimate)
-  x$confint <- expit(x$confint)
-  return(x)
-}
+
 plot.mcpCI <-
 function(x, ...){
   Estimate <- x$estimate
@@ -102,17 +90,4 @@ function(x, ...){
   printCoefmat(dat, digits = max(3, getOption("digits") - 3), has.Pvalue = TRUE, P.values = TRUE, eps.Pvalue = sig)
   cat("\n")
 }
-wald <-
-function(object){
-  srdp <- object$srdp
-  est <- object$CM %*% coefficients(object$object)
-  sde <- sqrt(diag(object$CM %*% vcov(object$object) %*% t(object$CM)))
-  wsrdp <- lapply(1:length(srdp), function(i){
-    srdpi <- srdp[[i]]
-    b <- srdpi[,1]
-    srdpi[,2] <- (b-est[i])/sde[i]
-    srdpi 
-  })
-  object$srdp <- wsrdp
-  return(object)
-}
+

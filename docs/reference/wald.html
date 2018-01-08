@@ -82,8 +82,7 @@
     </div>
 
     
-    <p>Transforms a signed root deviance profile of a mcprofile
-  object into a profile of Wald-type statistics</p>
+    <p>Transforms a signed root deviance profile of a mcprofile object into a profile of Wald-type statistics</p>
     
 
     <pre class="usage"><span class='fu'>wald</span>(<span class='no'>object</span>)</pre>
@@ -117,9 +116,9 @@
 <span class='no'>cta</span>$<span class='no'>concf</span> <span class='kw'>&lt;-</span> <span class='fu'>factor</span>(<span class='no'>cta</span>$<span class='no'>conc</span>, <span class='kw'>levels</span><span class='kw'>=</span><span class='fu'>unique</span>(<span class='no'>cta</span>$<span class='no'>conc</span>))
 
 <span class='fu'>ggplot</span>(<span class='no'>cta</span>, <span class='fu'>aes</span>(<span class='kw'>y</span><span class='kw'>=</span><span class='no'>foci</span>, <span class='kw'>x</span><span class='kw'>=</span><span class='no'>concf</span>)) +
-   <span class='fu'>geom_boxplot</span>() +
-   <span class='fu'>geom_dotplot</span>(<span class='kw'>binaxis</span> <span class='kw'>=</span> <span class='st'>"y"</span>, <span class='kw'>stackdir</span> <span class='kw'>=</span> <span class='st'>"center"</span>, <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='fl'>0.2</span>) +
-   <span class='fu'>xlab</span>(<span class='st'>"concentration"</span>)</div><div class='img'><img src='wald-1.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
+  <span class='fu'>geom_boxplot</span>() +
+  <span class='fu'>geom_dotplot</span>(<span class='kw'>binaxis</span> <span class='kw'>=</span> <span class='st'>"y"</span>, <span class='kw'>stackdir</span> <span class='kw'>=</span> <span class='st'>"center"</span>, <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='fl'>0.2</span>) +
+  <span class='fu'>xlab</span>(<span class='st'>"concentration"</span>)</div><div class='img'><img src='wald-1.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
 
 <span class='co'># glm fit assuming a Poisson distribution for foci counts</span>
 <span class='co'># parameter estimation on the log link</span>
@@ -190,8 +189,6 @@
       <li><a href="#examples">Examples</a></li>
     </ul>
 
-    <h2>Author</h2>
-    Daniel Gerhard
   </div>
 </div>
 

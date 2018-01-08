@@ -197,7 +197,7 @@
 ## 3 - 0       2.813  1.813  4.23
 ## 10 - 0      2.979  1.986  4.39</code></pre>
 <p>Instead of directly estimating the difference to the control, the coefficient vector can be reparameterized to represent the (log-) expected values for each concentration level by omitting the intercept in the model.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(m2 &lt;-<span class="st"> </span><span class="kw">glm</span>(foci <span class="op">~</span><span class="st"> </span>concf<span class="dv">-1</span>, <span class="dt">data=</span>cta, <span class="dt">family=</span><span class="kw">poisson</span>(<span class="dt">link=</span><span class="st">"log"</span>)))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(m2 &lt;-<span class="st"> </span><span class="kw">glm</span>(foci <span class="op">~</span><span class="st"> </span>concf<span class="op">-</span><span class="dv">1</span>, <span class="dt">data=</span>cta, <span class="dt">family=</span><span class="kw">poisson</span>(<span class="dt">link=</span><span class="st">"log"</span>)))</code></pre></div>
 <pre><code>## 
 ## Call:  glm(formula = foci ~ concf - 1, family = poisson(link = "log"), 
 ##     data = cta)
@@ -296,13 +296,13 @@
 ## adjustment:   single-step 
 ## 
 ##          Estimate   lower upper
-## 0.01 - 0    0.511 -1.2503  2.56
-## 0.03 - 0   -0.405 -3.0543  1.88
-## 0.1 - 0     1.386 -0.0182  3.31
-## 0.3 - 0     2.159  0.8952  4.04
-## 1 - 0       2.730  1.5186  4.59
-## 3 - 0       2.813  1.6075  4.67
-## 10 - 0      2.979  1.7827  4.83</code></pre>
+## 0.01 - 0    0.511 -1.2487  2.55
+## 0.03 - 0   -0.405 -3.0513  1.87
+## 0.1 - 0     1.386 -0.0171  3.31
+## 0.3 - 0     2.159  0.8962  4.04
+## 1 - 0       2.730  1.5195  4.59
+## 3 - 0       2.813  1.6084  4.67
+## 10 - 0      2.979  1.7836  4.83</code></pre>
 <p>Compatible tests are available with the <em>summary</em> method. Here, further multiple testing adjustment is available through the function . A single test margin can be specified to define the Null-hypotheses together with a test direction. A test if the difference of the average log-number of foci is larger than 1 for any concentration level compared to the control can be calculated by</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(p2, <span class="dt">margin=</span><span class="dv">1</span>, <span class="dt">alternative=</span><span class="st">"greater"</span>)</code></pre></div>
 <pre><code>## 
@@ -317,9 +317,9 @@
 ## 0.03 - 0 &lt;= 1    -0.41     -1.55  0.993    
 ## 0.1 - 0 &lt;= 1      1.39      0.62  0.507    
 ## 0.3 - 0 &lt;= 1      2.16      2.21  0.043 *  
-## 1 - 0 &lt;= 1        2.73      3.76 &lt;0.001 ***
-## 3 - 0 &lt;= 1        2.81      4.02 &lt;0.001 ***
-## 10 - 0 &lt;= 1       2.98      4.56 &lt;0.001 ***
+## 1 - 0 &lt;= 1        2.73      3.76 &lt;1e-04 ***
+## 3 - 0 &lt;= 1        2.81      4.02 &lt;1e-04 ***
+## 10 - 0 &lt;= 1       2.98      4.56 &lt;1e-04 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
@@ -342,19 +342,19 @@
 ## Fit: glm(formula = foci ~ concf - 1, family = poisson(link = "log"), 
 ##     data = cta)
 ## 
-## Quantile = 2.4377
+## Quantile = 2.4386
 ## 95% family-wise confidence level
 ##  
 ## 
 ## Linear Hypotheses:
 ##               Estimate lwr     upr    
-## 0.01 - 0 == 0  0.5108  -1.2694  2.2911
-## 0.03 - 0 == 0 -0.4055  -2.6308  1.8199
-## 0.1 - 0 == 0   1.3863  -0.1872  2.9598
-## 0.3 - 0 == 0   2.1595   0.6731  3.6459
-## 1 - 0 == 0     2.7300   1.2774  4.1826
-## 3 - 0 == 0     2.8134   1.3644  4.2624
-## 10 - 0 == 0    2.9789   1.5362  4.4217</code></pre>
+## 0.01 - 0 == 0  0.5108  -1.2701  2.2917
+## 0.03 - 0 == 0 -0.4055  -2.6316  1.8206
+## 0.1 - 0 == 0   1.3863  -0.1878  2.9604
+## 0.3 - 0 == 0   2.1595   0.6726  3.6464
+## 1 - 0 == 0     2.7300   1.2769  4.1831
+## 3 - 0 == 0     2.8134   1.3639  4.2629
+## 10 - 0 == 0    2.9789   1.5357  4.4222</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">confint</span>(w2)</code></pre></div>
 <pre><code>## 
 ##    mcprofile - Confidence Intervals 
@@ -363,13 +363,13 @@
 ## adjustment:   single-step 
 ## 
 ##          Estimate  lower upper
-## 0.01 - 0    0.511 -1.269  2.29
-## 0.03 - 0   -0.405 -2.630  1.82
-## 0.1 - 0     1.386 -0.186  2.96
-## 0.3 - 0     2.159  0.674  3.65
-## 1 - 0       2.730  1.278  4.18
-## 3 - 0       2.813  1.365  4.26
-## 10 - 0      2.979  1.537  4.42</code></pre>
+## 0.01 - 0    0.511 -1.270  2.29
+## 0.03 - 0   -0.405 -2.631  1.82
+## 0.1 - 0     1.386 -0.188  2.96
+## 0.3 - 0     2.159  0.673  3.65
+## 1 - 0       2.730  1.277  4.18
+## 3 - 0       2.813  1.364  4.26
+## 10 - 0      2.979  1.536  4.42</code></pre>
 </div>
 <div id="modified-likelihood-root-1" class="section level2">
 <h2 class="hasAnchor">
@@ -384,13 +384,13 @@
 ## adjustment:   single-step 
 ## 
 ##          Estimate   lower upper
-## 0.01 - 0    0.511 -1.2532  2.50
-## 0.03 - 0   -0.405 -2.9576  1.86
-## 0.1 - 0     1.386 -0.0426  3.23
-## 0.3 - 0     2.159  0.8658  3.94
-## 1 - 0       2.730  1.4879  4.49
-## 3 - 0       2.813  1.5767  4.57
-## 10 - 0      2.979  1.7517  4.73</code></pre>
+## 0.01 - 0    0.511 -1.2536  2.50
+## 0.03 - 0   -0.405 -2.9584  1.86
+## 0.1 - 0     1.386 -0.0429  3.23
+## 0.3 - 0     2.159  0.8656  3.95
+## 1 - 0       2.730  1.4876  4.49
+## 3 - 0       2.813  1.5764  4.57
+## 10 - 0      2.979  1.7514  4.73</code></pre>
 </div>
 <div id="simultaneous-confidence-intervals-for-predictions-in-logistic-regression-models" class="section level2">
 <h2 class="hasAnchor">
