@@ -1,0 +1,29 @@
+reference:
+- title: mcprofile
+  desc: Constructing profiles for linear combinations of generalised linear model coefficients 
+  contents:
+  - mcprofile
+  - confint.mcprofile
+  - summary.mcprofile
+- title: Profile statistics
+  desc: Change the profiled statistic (default is the signed root deviance)
+  contents:
+  - wald
+  - hoa
+- title: CI transformation
+  desc: Functions to transform confidence limits
+  contents:
+  - exp.mcpCI
+  - expit.mcpCI
+- title: Data
+  contents:
+  - aphidlight
+  - cta
+  - toxinLD
+- title: Misc
+  contents:
+  - orglm.fit
+  - mcprofileControl
+  
+  
+  

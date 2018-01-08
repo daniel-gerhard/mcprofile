@@ -85,7 +85,15 @@
     <p>Calculates signed root deviance profiles given a <code>glm</code> or <code>lm</code> object. The profiled parameters of interest are defined by providing a contrast matrix.</p>
     
 
-    <pre class="usage"><span class='fu'>mcprofile</span>(<span class='no'>object</span>, <span class='no'>CM</span>, <span class='kw'>control</span> <span class='kw'>=</span> <span class='fu'><a href='mcprofileControl.html'>mcprofileControl</a></span>(), <span class='kw'>grid</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>mcprofile</span>(<span class='no'>object</span>, <span class='no'>CM</span>, <span class='kw'>control</span> <span class='kw'>=</span> <span class='fu'><a href='mcprofileControl.html'>mcprofileControl</a></span>(), <span class='kw'>grid</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+
+<span class='co'># S3 method for glm</span>
+<span class='fu'>mcprofile</span>(<span class='no'>object</span>, <span class='no'>CM</span>, <span class='kw'>control</span> <span class='kw'>=</span> <span class='fu'><a href='mcprofileControl.html'>mcprofileControl</a></span>(),
+  <span class='kw'>grid</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+
+<span class='co'># S3 method for lm</span>
+<span class='fu'>mcprofile</span>(<span class='no'>object</span>, <span class='no'>CM</span>, <span class='kw'>control</span> <span class='kw'>=</span> <span class='fu'><a href='mcprofileControl.html'>mcprofileControl</a></span>(),
+  <span class='kw'>grid</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -134,7 +142,7 @@
 <span class='fu'>ggplot</span>(<span class='no'>cta</span>, <span class='fu'>aes</span>(<span class='kw'>y</span><span class='kw'>=</span><span class='no'>foci</span>, <span class='kw'>x</span><span class='kw'>=</span><span class='no'>concf</span>)) +
   <span class='fu'>geom_boxplot</span>() +
   <span class='fu'>geom_dotplot</span>(<span class='kw'>binaxis</span> <span class='kw'>=</span> <span class='st'>"y"</span>, <span class='kw'>stackdir</span> <span class='kw'>=</span> <span class='st'>"center"</span>, <span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='fl'>0.2</span>) +
-  <span class='fu'>xlab</span>(<span class='st'>"concentration"</span>)</div><div class='img'><img src='mcprofile-1.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
+  <span class='fu'>xlab</span>(<span class='st'>"concentration"</span>)</div><div class='img'><img src='mcprofile-4.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
 
 <span class='co'># glm fit assuming a Poisson distribution for foci counts</span>
 <span class='co'># parameter estimation on the log link</span>
@@ -159,7 +167,7 @@
 #&gt; 3 - 0       2.813   0.594
 #&gt; 10 - 0      2.979   0.592
 #&gt; </div><div class='input'><span class='co'># plot profiles</span>
-<span class='fu'>plot</span>(<span class='no'>dmcp</span>)</div><div class='img'><img src='mcprofile-2.png' alt='' width='700' height='432.632880098887' /></div><div class='input'><span class='co'># confidence intervals</span>
+<span class='fu'>plot</span>(<span class='no'>dmcp</span>)</div><div class='img'><img src='mcprofile-5.png' alt='' width='700' height='432.632880098887' /></div><div class='input'><span class='co'># confidence intervals</span>
 (<span class='no'>ci</span> <span class='kw'>&lt;-</span> <span class='fu'>confint</span>(<span class='no'>dmcp</span>))</div><div class='output co'>#&gt; 
 #&gt;    mcprofile - Confidence Intervals 
 #&gt; 
@@ -174,7 +182,7 @@
 #&gt; 1 - 0       2.730  1.5194  4.59
 #&gt; 3 - 0       2.813  1.6083  4.67
 #&gt; 10 - 0      2.979  1.7835  4.83
-#&gt; </div><div class='input'><span class='fu'>plot</span>(<span class='no'>ci</span>)</div><div class='img'><img src='mcprofile-3.png' alt='' width='700' height='432.632880098887' /></div></pre>
+#&gt; </div><div class='input'><span class='fu'>plot</span>(<span class='no'>ci</span>)</div><div class='img'><img src='mcprofile-6.png' alt='' width='700' height='432.632880098887' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

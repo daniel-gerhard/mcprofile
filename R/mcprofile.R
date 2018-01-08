@@ -49,6 +49,7 @@
 mcprofile <-
 function(object, CM, control=mcprofileControl(), grid=NULL) UseMethod("mcprofile")
 
+#' @rdname mcprofile
 mcprofile.glm <-
 function(object, CM, control=mcprofileControl(), grid=NULL){
   if (is.null(rownames(CM))) rownames(CM) <- paste("C",1:nrow(CM), sep="")
@@ -99,6 +100,7 @@ function(object, CM, control=mcprofileControl(), grid=NULL){
   out
 }
 
+#' @rdname mcprofile
 mcprofile.lm <-
 function(object, CM, control=mcprofileControl(), grid=NULL){
   oc <- as.list(object$call)

@@ -2,9 +2,17 @@
 % Please edit documentation in R/mcprofile.R
 \name{mcprofile}
 \alias{mcprofile}
+\alias{mcprofile.glm}
+\alias{mcprofile.lm}
 \title{Construction of Multiple Contrast Profiles}
 \usage{
 mcprofile(object, CM, control = mcprofileControl(), grid = NULL)
+
+\method{mcprofile}{glm}(object, CM, control = mcprofileControl(),
+  grid = NULL)
+
+\method{mcprofile}{lm}(object, CM, control = mcprofileControl(),
+  grid = NULL)
 }
 \arguments{
 \item{object}{An object of class \code{\link{glm}} or \code{\link{lm}}}

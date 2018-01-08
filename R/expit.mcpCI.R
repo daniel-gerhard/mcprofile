@@ -1,6 +1,6 @@
-#' Transformation of Confidence Intervals
+#' Inverse logit transformation of Confidence Intervals
 #' 
-#' Transformation of confidence interval estimates in mcpCI objects.
+#' Inverse logit transformation of confidence interval estimates in mcpCI objects.
 #' 
 #' @param x An object of class mcpCI
 #' 
@@ -10,13 +10,6 @@
 #' @seealso \code{\link{exp}}, \code{\link{confint.mcprofile}}
 #' 
 #' @keywords misc
-
-exp.mcpCI <-
-  function(x){
-    x$estimate <- exp(x$estimate)
-    x$confint <- exp(x$confint)
-    return(x)
-  }
 
 expit.mcpCI <-
   function(x){
