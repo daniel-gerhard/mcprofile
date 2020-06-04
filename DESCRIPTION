@@ -1,6 +1,6 @@
 Package: mcprofile
 Title: Testing Generalized Linear Hypotheses for Generalized Linear Model Parameters by Profile Deviance
-Date: 2018-01-09
+Date: 2020-06-04
 Version: 1.0-0
 Authors@R: c(person("Daniel", "Gerhard", role = c("aut", "cre"),
 		     email = "00gerhard@gmail.com"))

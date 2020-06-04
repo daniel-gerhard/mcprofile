@@ -1,5 +1,5 @@
 export(mcprofile, wald, hoa, mcprofileControl)
-exportClasses("mcprofile", "mcpCI", "mcpSummary", "mcprofileControl")
+#exportClasses("mcprofile", "mcpCI", "mcpSummary", "mcprofileControl")
 
 import(ggplot2)
 importFrom("quadprog", solve.QP)
