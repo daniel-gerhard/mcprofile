@@ -13,9 +13,9 @@ function(x, ...){
          }, greater = {
            lower <- x$confint$lower
            upper <- Inf
-         }, lower = {
-           lower <- x$confint$lower
-           upper <- Inf
+         }, less = {
+           lower <- -Inf
+           upper <- x$confint$upper
          })
   lower[is.na(lower)] <- -Inf
   upper[is.na(upper)] <- Inf
