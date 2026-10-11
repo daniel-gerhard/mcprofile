@@ -1,4 +1,4 @@
-export(mcprofile, wald, hoa, mcprofileControl)
+export(mcprofile, wald, hoa, mcprofileControl, expit)
 #exportClasses("mcprofile", "mcpCI", "mcpSummary", "mcprofileControl")
 
 import(ggplot2)
@@ -19,6 +19,7 @@ S3method(confint, mcprofile)
 S3method(print, mcpCI)
 S3method(plot, mcpCI)
 S3method(exp, mcpCI)
+S3method(expit, default)
 S3method(expit, mcpCI)
 S3method(print, mcpSummary)
 

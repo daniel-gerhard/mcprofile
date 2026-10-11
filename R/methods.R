@@ -1,5 +1,3 @@
-expit <- function(x) 1/(1 + exp(-x))
-
 plot.mcpCI <-
 function(x, ...){
   Estimate <- x$estimate
