@@ -11,6 +11,7 @@ Imports: quadprog, mvtnorm, splines
 LazyLoad: yes
 LazyData: yes
 License: GPL (>=2)
+URL: https://daniel-gerhard.github.io/mcprofile/
 VignetteBuilder: knitr
 Suggests: knitr, markdown, multcomp, MASS
 RoxygenNote: 6.0.1
