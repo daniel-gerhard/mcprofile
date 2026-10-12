@@ -106,7 +106,8 @@ function(object, CM, control=mcprofileControl(), grid=NULL){
   oc <- as.list(object$call)
   oc$family <- call("gaussian")
   oc[[1]] <- as.symbol("glm")
-  object <- eval(as.call(oc))
+  ## evaluate where the model was defined, not inside this function
+  object <- eval(as.call(oc), environment(formula(object)))
   mcprofile.glm(object, CM=CM, control=control, grid=grid)
 }
 
