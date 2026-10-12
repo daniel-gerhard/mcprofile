@@ -2,7 +2,7 @@
 #' 
 #' Calculates signed root deviance profiles given a \code{\link{glm}} or \code{\link{lm}} object. The profiled parameters of interest are defined by providing a contrast matrix.
 #' 
-#' The profiles are calculates separately for each row of the contrast matrix. The profiles are calculated by constrained IRWLS optimization, implemented in function \code{orglm}, using the quadratic programming algorithm of package \code{quadprog}. Models with aliased (\code{NA}) coefficients are not supported; refit the model without the redundant terms.
+#' The profiles are calculated separately for each row of the contrast matrix. The profiles are calculated by constrained IRWLS optimization, implemented in function \code{orglm}, using the quadratic programming algorithm of package \code{quadprog}. Models with aliased (\code{NA}) coefficients are not supported; refit the model without the redundant terms.
 #' 
 #' @param object An object of class \code{\link{glm}} or \code{\link{lm}}
 #' @param CM A contrast matrix for the definition of parameter linear combinations (\code{CM \%*\% coefficients(object)}). The number of columns should be equal to the number of estimated parameters. Providing row names is recommendable.
