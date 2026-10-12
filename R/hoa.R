@@ -51,17 +51,17 @@ hoa <- function(object, maxstat=10){
   Kuv <- sumobj$cov.unscaled
   r <- lapply(object$srdp, function(sr) sr[, 2])
   q <- lapply(wald(object)$srdp, function(sr) sr[, 2])
-  j <- (1/det(Kuv))
-  vc <- apply(CM, 1, function(cm) det(rbind(Kuv[cm != 0, cm != 0])))
-  j.1 <- j * vc
-  
-  j.0 <- lapply(object$cobject, function(vm) sapply(vm, function(x) {
-    xt <- try(1/(detvarorglm(x)), silent = TRUE)
-    if (class(xt)[1] == "try-error") xt <- NA
-    xt[xt > 10^12] <- NA
+  ## log |j_ll| (nuisance information) at the MLE: log det(J) + log(c' J^-1 c), with J^-1 = Kuv
+  ldJ <- -as.numeric(determinant(Kuv, logarithm = TRUE)$modulus)
+  lj.1 <- apply(CM, 1, function(cm) ldJ + log(drop(t(cm) %*% Kuv %*% cm)))
+
+  ## log |j_ll| at each constrained fit
+  lj.0 <- lapply(object$cobject, function(vm) sapply(vm, function(x) {
+    xt <- try(logdetjll(x), silent = TRUE)
+    if (inherits(xt, "try-error") || !is.finite(xt)) xt <- NA
     return(xt)
   }))
-  rho <- lapply(1:length(j.0), function(i) sqrt(j.1[i]/j.0[[i]]))
+  rho <- lapply(1:length(lj.0), function(i) exp((lj.1[i] - lj.0[[i]])/2))
   adjr <- lapply(1:length(rho), function(i) r[[i]] + log(rho[[i]] * q[[i]]/r[[i]])/r[[i]])
   adjr <- lapply(adjr, function(x){
     x[is.infinite(x)] <- NA

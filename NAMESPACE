@@ -1,11 +1,11 @@
-export(mcprofile, wald, hoa, mcprofileControl)
+export(mcprofile, wald, hoa, mcprofileControl, expit)
 #exportClasses("mcprofile", "mcpCI", "mcpSummary", "mcprofileControl")
 
 import(ggplot2)
 importFrom("quadprog", solve.QP)
 importFrom("splines", interpSpline)
 importFrom("mvtnorm", pmvnorm, pmvt, qmvnorm, qmvt)
-importFrom("stats", "coefficients", "df.residual", "family",
+importFrom("stats", "coefficients", "df.residual", "family", "formula",
              "gaussian", "lm", "lm.fit", "model.frame", "model.matrix",
              "model.offset", "model.response", "model.weights",
              "na.omit", "p.adjust", "pnorm", "predict", "printCoefmat",
@@ -19,6 +19,7 @@ S3method(confint, mcprofile)
 S3method(print, mcpCI)
 S3method(plot, mcpCI)
 S3method(exp, mcpCI)
+S3method(expit, default)
 S3method(expit, mcpCI)
 S3method(print, mcpSummary)
 

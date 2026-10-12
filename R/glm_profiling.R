@@ -8,16 +8,18 @@ function(X, Y, W, etastart, O, fam, glmcontrol, est, OriginalDeviance, Dispersio
   signs[Kest > b] <- -1
   
   bdist <- abs(b-Kest)
-  nbi <- order(bdist[signs < 0])
-  pbi <-  order(bdist[signs > 0]) + max(nbi)
+  ## grid indices below/above the estimate, each ordered by distance to the estimate
+  nbi <- which(signs < 0)[order(bdist[signs < 0])]
+  pbi <- which(signs > 0)[order(bdist[signs > 0])]
   bind <- c(nbi,pbi)
-  oeta <- logical(length=length(b))  
-  oeta[max(nbi + 1)] <- TRUE
+  ## reset to the MLE start after the last point below the estimate
+  oeta <- logical(length=length(b))
+  oeta[nbi[length(nbi)]] <- TRUE
   
   etavec <- etastart
   for (i in bind){
     fm <- try(orglm.fit(x=X, y=Y, weights=W, etastart=etavec, offset=O, family=fam, control=glmcontrol, constr=K, rhs=b[i], nec=1), silent=TRUE)
-    if (class(fm)[1] != "try-error"){
+    if (!inherits(fm, "try-error")){
       zz <- signs[i]*sqrt(abs(fm$deviance - OriginalDeviance)/DispersionParameter)
       z[i] <- zz
       pmi[i,] <- fm$coefficients

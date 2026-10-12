@@ -1,5 +1,3 @@
-expit <- function(x) 1/(1 + exp(-x))
-
 plot.mcpCI <-
 function(x, ...){
   Estimate <- x$estimate
@@ -13,15 +11,15 @@ function(x, ...){
          }, greater = {
            lower <- x$confint$lower
            upper <- Inf
-         }, lower = {
-           lower <- x$confint$lower
-           upper <- Inf
+         }, less = {
+           lower <- -Inf
+           upper <- x$confint$upper
          })
   lower[is.na(lower)] <- -Inf
   upper[is.na(upper)] <- Inf
   cidat$lower <- lower
   cidat$upper <- upper
-  ggplot(cidat, aes(x=Estimate, y=grp, xmin=lower, xmax=upper)) + geom_errorbarh(height=0.3) + geom_point() + ylab("") + xlab("")
+  ggplot(cidat, aes(x=Estimate, y=grp, xmin=lower, xmax=upper)) + geom_errorbar(width=0.3, orientation="y") + geom_point() + ylab("") + xlab("")
 }
 
 plot.mcprofile <- function(x, ...){
@@ -37,7 +35,7 @@ plot.mcprofile <- function(x, ...){
     x <- na.omit(x)
     sp <- try(interpSpline(x[,1], x[,2]))
     bcoord <- seq(min(x[,1]), max(x[,1]), length=200)
-    preds <- if (class(sp)[1] == "try-error") y <- rep(NA, 200) else predict(sp, x=bcoord)$y
+    preds <- if (inherits(sp, "try-error")) rep(NA, 200) else predict(sp, x=bcoord)$y
     data.frame(b=bcoord, z=preds)
   })
   pgrp <- factor(rep(rownames(CM), each=200), levels=rownames(CM))

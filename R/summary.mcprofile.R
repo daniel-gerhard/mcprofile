@@ -30,7 +30,7 @@ function(object, margin=0, adjust="single-step", alternative=c("two.sided","less
   })
   ptest <- function(spl, delta){
     pst <- try(predict(spl, delta)$y, silent=TRUE)
-    if (class(pst) == "try-error") NA else pst   
+    if (inherits(pst, "try-error")) NA else pst   
   }
   stat <- sapply(spl, function(x) -1*ptest(x, delta=margin))
   naid <- is.na(stat)

@@ -2,18 +2,41 @@
 % Please edit documentation in R/expit.mcpCI.R
 \name{expit.mcpCI}
 \alias{expit.mcpCI}
+\alias{expit}
+\alias{expit.default}
 \title{Inverse logit transformation of Confidence Intervals}
 \usage{
-expit.mcpCI(x)
+expit(x)
+
+\method{expit}{default}(x)
+
+\method{expit}{mcpCI}(x)
 }
 \arguments{
-\item{x}{An object of class mcpCI}
+\item{x}{An object of class mcpCI, or a numeric vector, matrix or data.frame for the default method.}
 }
 \value{
-An object of class mcpCI with transformed estimates.
+An object of class mcpCI with transformed estimates. The default method returns \code{1/(1 + exp(-x))}.
 }
 \description{
 Inverse logit transformation of confidence interval estimates in mcpCI objects.
+}
+\examples{
+## proportion of green aphids at each light level
+aphidlight$lightf <- factor(aphidlight$light)
+fm <- glm(cbind(green, black) ~ lightf - 1, data = aphidlight,
+          family = binomial(link = "logit"))
+
+## one contrast per light level: the logit of each group's proportion
+CM <- diag(nlevels(aphidlight$lightf))
+rownames(CM) <- paste("light", levels(aphidlight$lightf))
+
+mc <- mcprofile(fm, CM)
+(ci <- confint(mc))
+
+## simultaneous confidence intervals on the probability scale
+(pci <- expit(ci))
+plot(pci)
 }
 \seealso{
 \code{\link{exp}}, \code{\link{confint.mcprofile}}

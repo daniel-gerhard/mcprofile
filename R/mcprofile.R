@@ -2,7 +2,7 @@
 #' 
 #' Calculates signed root deviance profiles given a \code{\link{glm}} or \code{\link{lm}} object. The profiled parameters of interest are defined by providing a contrast matrix.
 #' 
-#' The profiles are calculates separately for each row of the contrast matrix. The profiles are calculated by constrained IRWLS optimization, implemented in function \code{orglm}, using the quadratic programming algorithm of package \code{quadprog}.
+#' The profiles are calculated separately for each row of the contrast matrix. The profiles are calculated by constrained IRWLS optimization, implemented in function \code{orglm}, using the quadratic programming algorithm of package \code{quadprog}. Models with aliased (\code{NA}) coefficients are not supported; refit the model without the redundant terms.
 #' 
 #' @param object An object of class \code{\link{glm}} or \code{\link{lm}}
 #' @param CM A contrast matrix for the definition of parameter linear combinations (\code{CM \%*\% coefficients(object)}). The number of columns should be equal to the number of estimated parameters. Providing row names is recommendable.
@@ -52,9 +52,11 @@ function(object, CM, control=mcprofileControl(), grid=NULL) UseMethod("mcprofile
 #' @rdname mcprofile
 mcprofile.glm <-
 function(object, CM, control=mcprofileControl(), grid=NULL){
+  aliased <- names(which(is.na(coefficients(object))))
+  if (length(aliased) > 0) stop("Model has aliased (NA) coefficients: ", paste(aliased, collapse=", "), ". Refit the model without the redundant terms.")
+  if (ncol(CM) != length(coefficients(object))) stop("Equal number of contrast and model coefficients needed!")
   if (is.null(rownames(CM))) rownames(CM) <- paste("C",1:nrow(CM), sep="")
   if (is.null(colnames(CM))) colnames(CM) <- names(coefficients(object))
-  if (ncol(CM) != length(coefficients(object))) stop("Equal number of contrast and model coefficients needed!")
 
   df.needed <- family(object)$family == "gaussian" | length(grep("quasi", family(object)$family)) == 1 | length(grep("Negative Binomial", family(object)$family)) == 1
 
@@ -95,7 +97,7 @@ function(object, CM, control=mcprofileControl(), grid=NULL){
   out$srdp <- lapply(prolist, function(x) x[[1]])
   out$optpar <- lapply(prolist, function(x) x[[2]])
   out$cobject <- lapply(prolist, function(x) x[[3]])
-  if (df.needed) out$df <- df.residual(object) else df <- NULL
+  if (df.needed) out$df <- df.residual(object)
   class(out) <- "mcprofile"
   out
 }
@@ -106,7 +108,8 @@ function(object, CM, control=mcprofileControl(), grid=NULL){
   oc <- as.list(object$call)
   oc$family <- call("gaussian")
   oc[[1]] <- as.symbol("glm")
-  object <- eval(as.call(oc))
+  ## evaluate where the model was defined, not inside this function
+  object <- eval(as.call(oc), environment(formula(object)))
   mcprofile.glm(object, CM=CM, control=control, grid=grid)
 }
 
