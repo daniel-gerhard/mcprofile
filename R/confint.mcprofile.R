@@ -50,9 +50,9 @@ function(object, parm, level=0.95, adjust=c("single-step","none","bonferroni"), 
     ci <- data.frame(t(sapply(spl, function(x, quant){
       pfun <- function(xc, obj, quant) predict(obj, xc)$y-quant
       upper <- try(uniroot(pfun, range(predict(x)$x), obj=x, quant=quant)$root, silent=TRUE)
-      if (class(upper)[1] == "try-error") upper <- NA
+      if (inherits(upper, "try-error")) upper <- NA
       lower <- try(uniroot(pfun, range(predict(x)$x), obj=x, quant=-quant)$root, silent=TRUE)
-      if (class(lower)[1] == "try-error") lower <- NA
+      if (inherits(lower, "try-error")) lower <- NA
       c(lower, upper)
     }, quant=quant)))
     names(ci) <- c("lower", "upper")
@@ -61,7 +61,7 @@ function(object, parm, level=0.95, adjust=c("single-step","none","bonferroni"), 
     ci <- data.frame(sapply(spl, function(x, quant){
       pfun <- function(xc, obj, quant) predict(obj, xc)$y-quant
       upper <- try(uniroot(pfun, range(predict(x)$x), obj=x, quant=quant)$root, silent=TRUE)
-      if (class(upper)[1] == "try-error") upper <- NA
+      if (inherits(upper, "try-error")) upper <- NA
       cbind(c(upper))
     }, quant=quant))
     names(ci) <- "upper"
@@ -70,7 +70,7 @@ function(object, parm, level=0.95, adjust=c("single-step","none","bonferroni"), 
     ci <- data.frame(sapply(spl, function(x, quant){
       pfun <- function(xc, obj, quant) predict(obj, xc)$y-quant
       lower <- try(uniroot(pfun, range(predict(x)$x), obj=x, quant=-quant)$root, silent=TRUE)
-      if (class(lower)[1] == "try-error") lower <- NA
+      if (inherits(lower, "try-error")) lower <- NA
       cbind(c(lower))
     }, quant=quant))
     names(ci) <- "lower"

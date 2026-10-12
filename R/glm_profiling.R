@@ -19,7 +19,7 @@ function(X, Y, W, etastart, O, fam, glmcontrol, est, OriginalDeviance, Dispersio
   etavec <- etastart
   for (i in bind){
     fm <- try(orglm.fit(x=X, y=Y, weights=W, etastart=etavec, offset=O, family=fam, control=glmcontrol, constr=K, rhs=b[i], nec=1), silent=TRUE)
-    if (class(fm)[1] != "try-error"){
+    if (!inherits(fm, "try-error")){
       zz <- signs[i]*sqrt(abs(fm$deviance - OriginalDeviance)/DispersionParameter)
       z[i] <- zz
       pmi[i,] <- fm$coefficients

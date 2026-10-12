@@ -35,7 +35,7 @@ plot.mcprofile <- function(x, ...){
     x <- na.omit(x)
     sp <- try(interpSpline(x[,1], x[,2]))
     bcoord <- seq(min(x[,1]), max(x[,1]), length=200)
-    preds <- if (class(sp)[1] == "try-error") y <- rep(NA, 200) else predict(sp, x=bcoord)$y
+    preds <- if (inherits(sp, "try-error")) rep(NA, 200) else predict(sp, x=bcoord)$y
     data.frame(b=bcoord, z=preds)
   })
   pgrp <- factor(rep(rownames(CM), each=200), levels=rownames(CM))
