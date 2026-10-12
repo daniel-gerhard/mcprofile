@@ -59,26 +59,10 @@
 orglm.fit <- function (x, y, weights = rep(1, nobs), start = NULL, etastart = NULL, mustart = NULL, offset = rep(0, nobs), family = gaussian(), control = list(), intercept = TRUE, constr, rhs, nec){
 
   ###################
+  ## constrained least squares: min ||y - x b||^2 subject to constr b = rhs (first nec rows), >= rhs (others)
   orr <- function(x, y, constr, rhs, nec){
-    unc <- lm.fit(x, y)
-    tBeta <- as.vector(coefficients(unc))
-    invW <- t(x) %*% x
-    orsolve <- function(tBeta, invW, Constr, RHS, NEC) {
-      Dmat <- 2 * invW
-      dvec <- 2 * tBeta %*% invW
-      Amat <- t(Constr)
-      solve.QP(Dmat, dvec, Amat, bvec = RHS, meq = NEC)
-    }
-    orBeta <- tBeta
-    val <- 0
-    for (i in 1:control$maxit) {
-      sqp <- orsolve(orBeta, invW, constr, rhs, nec)
-      orBeta <- sqp$solution
-      if (abs(sqp$value - val) <= control$epsilon) 
-        break
-      else val <- sqp$value
-    }
-    return(list(coefficients=orBeta))
+    sqp <- solve.QP(2 * crossprod(x), 2 * as.vector(crossprod(x, y)), t(constr), bvec = rhs, meq = nec)
+    return(list(coefficients=sqp$solution))
   }
   
   ###############
