@@ -95,7 +95,7 @@ function(object, CM, control=mcprofileControl(), grid=NULL){
   out$srdp <- lapply(prolist, function(x) x[[1]])
   out$optpar <- lapply(prolist, function(x) x[[2]])
   out$cobject <- lapply(prolist, function(x) x[[3]])
-  if (df.needed) out$df <- df.residual(object) else df <- NULL
+  if (df.needed) out$df <- df.residual(object)
   class(out) <- "mcprofile"
   out
 }
