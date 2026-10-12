@@ -8,11 +8,13 @@ function(X, Y, W, etastart, O, fam, glmcontrol, est, OriginalDeviance, Dispersio
   signs[Kest > b] <- -1
   
   bdist <- abs(b-Kest)
-  nbi <- order(bdist[signs < 0])
-  pbi <-  order(bdist[signs > 0]) + max(nbi)
+  ## grid indices below/above the estimate, each ordered by distance to the estimate
+  nbi <- which(signs < 0)[order(bdist[signs < 0])]
+  pbi <- which(signs > 0)[order(bdist[signs > 0])]
   bind <- c(nbi,pbi)
-  oeta <- logical(length=length(b))  
-  oeta[max(nbi + 1)] <- TRUE
+  ## reset to the MLE start after the last point below the estimate
+  oeta <- logical(length=length(b))
+  oeta[nbi[length(nbi)]] <- TRUE
   
   etavec <- etastart
   for (i in bind){
