@@ -13,5 +13,6 @@ LazyData: yes
 License: GPL (>=2)
 URL: https://daniel-gerhard.github.io/mcprofile/
 VignetteBuilder: knitr
-Suggests: knitr, markdown, multcomp, MASS
+Suggests: knitr, markdown, multcomp, MASS, testthat (>= 3.0.0)
+Config/testthat/edition: 3
 RoxygenNote: 6.0.1
