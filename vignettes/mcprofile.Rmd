@@ -291,8 +291,8 @@ pdat$lower <- mlr$family$linkinv(cilr$confint$lower)
 pdat$upper <- mlr$family$linkinv(cilr$confint$upper)
 
 ggplot(toxinLD, aes(x=logdose, y=dead/(dead+alive))) + 
-  geom_ribbon(data=pdat, aes(y=estimate, ymin=lower, ymax=upper), size=0.95, fill="lightblue") +
-  geom_line(data=pdat, aes(y=estimate), size=0.95) +
+  geom_ribbon(data=pdat, aes(y=estimate, ymin=lower, ymax=upper), linewidth=0.95, fill="lightblue") +
+  geom_line(data=pdat, aes(y=estimate), linewidth=0.95) +
   geom_point(size=3) +
   ylab("Mortality rate")
 ```

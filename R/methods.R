@@ -19,7 +19,7 @@ function(x, ...){
   upper[is.na(upper)] <- Inf
   cidat$lower <- lower
   cidat$upper <- upper
-  ggplot(cidat, aes(x=Estimate, y=grp, xmin=lower, xmax=upper)) + geom_errorbarh(height=0.3) + geom_point() + ylab("") + xlab("")
+  ggplot(cidat, aes(x=Estimate, y=grp, xmin=lower, xmax=upper)) + geom_errorbar(width=0.3, orientation="y") + geom_point() + ylab("") + xlab("")
 }
 
 plot.mcprofile <- function(x, ...){

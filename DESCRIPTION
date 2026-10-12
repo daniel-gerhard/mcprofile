@@ -6,7 +6,7 @@ Authors@R: c(person("Daniel", "Gerhard", role = c("aut", "cre"),
 		     email = "00gerhard@gmail.com"))
 Maintainer: Daniel Gerhard <00gerhard@gmail.com>
 Description: Calculation of signed root deviance profiles for linear combinations of parameters in a generalized linear model. Multiple tests and simultaneous confidence intervals are provided.
-Depends: R (>= 3.1.0), ggplot2
+Depends: R (>= 3.1.0), ggplot2 (>= 3.4.0)
 Imports: quadprog, mvtnorm, splines
 LazyLoad: yes
 LazyData: yes
