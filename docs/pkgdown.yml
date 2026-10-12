@@ -3,7 +3,7 @@ pkgdown: 2.2.1
 pkgdown_sha: ~
 articles:
   mcprofile: mcprofile.html
-last_built: 2026-10-12T01:33Z
+last_built: 2026-10-12T01:58Z
 urls:
   reference: https://daniel-gerhard.github.io/mcprofile/reference
   article: https://daniel-gerhard.github.io/mcprofile/articles

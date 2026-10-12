@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mcprofile</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0-1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0-2</span>
       </span>
     </div>
 
@@ -42,6 +42,9 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right"></ul>
@@ -492,13 +495,12 @@ range
 <p>A visualization of the confidence intervals can be obtained by</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">ci</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## `height` was translated to `width`.</span></span></code></pre>
 <p><img src="mcprofile_files/figure-html/plot2-1.png" class="r-plt" alt="" width="700"></p>
 <p>The confidence intervals are shown on the scale of the linear
 predictor. The mcprofile package contains an <em>exp</em> method to
 transform the scale. Further ggplot2 functions can be used to change the
 plot layout.</p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">ci</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu">coord_trans</span><span class="op">(</span>x<span class="op">=</span><span class="st">"log"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_vline</span><span class="op">(</span>xintercept<span class="op">=</span><span class="fl">1</span>, lty<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
@@ -507,7 +509,6 @@ plot layout.</p>
 <span><span class="co">## <span style="color: #555555;">This warning is displayed once per session.</span></span></span>
 <span><span class="co">## <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was</span></span></span>
 <span><span class="co">## <span style="color: #555555;">generated.</span></span></span></code></pre>
-<pre><code><span><span class="co">## `height` was translated to `width`.</span></span></code></pre>
 <p><img src="mcprofile_files/figure-html/plot3-1.png" class="r-plt" alt="" width="700"></p>
 </div>
 <div class="section level4">
@@ -521,7 +522,7 @@ contrast parameters defined in each row of the contrast matrix.</p>
 <p>For example, the profiles can be calculated for a range of 15 support
 values between
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">[</mo><mi>−</mi><mn>3</mn><mo>,</mo><mn>5</mn><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">[-3, 5]</annotation></semantics></math>.</p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cgrid</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">cm2</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">i</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">3</span>, <span class="fl">5</span>, length<span class="op">=</span><span class="fl">15</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">cgrid</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##            [,1]       [,2]       [,3]       [,4]       [,5]       [,6]</span></span>
@@ -538,7 +539,7 @@ values between
 <span><span class="co">## [4,] -1.2857143</span></span>
 <span><span class="co">## [5,] -0.7142857</span></span>
 <span><span class="co">## [6,] -0.1428571</span></span></code></pre>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mcprofile.html">mcprofile</a></span><span class="op">(</span><span class="va">m2</span>, <span class="va">cm2</span>, grid<span class="op">=</span><span class="va">cgrid</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">p3</span><span class="op">)</span> </span></code></pre></div>
 <p><img src="mcprofile_files/figure-html/grid-1.png" class="r-plt" alt="" width="700"></p>
@@ -550,7 +551,7 @@ values between
 by a single-step method, calculating a quantile of a multivariate normal
 or <em>t</em>-distribution. As an alternative the multiplicity
 adjustment by the Bonferroni method is available.</p>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">(</span><span class="va">ci2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">p2</span>, adjust<span class="op">=</span><span class="st">"single-step"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">##    mcprofile - Confidence Intervals </span></span>
@@ -572,7 +573,7 @@ function . A single test margin can be specified to define the
 Null-hypotheses together with a test direction. A test if the difference
 of the average log-number of foci is larger than 1 for any concentration
 level compared to the control can be calculated by</p>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">p2</span>, margin<span class="op">=</span><span class="fl">1</span>, alternative<span class="op">=</span><span class="st">"greater"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">##    mcprofile - Multiple Testing</span></span>
@@ -599,13 +600,13 @@ level compared to the control can be calculated by</p>
 <p>Instead of the likelihood root, the Wald-type statistic can be used
 to construct a profile. The function <em>wald</em> directly transforms
 the profile object.</p>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">w2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/wald.html">wald</a></span><span class="op">(</span><span class="va">p2</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">w2</span><span class="op">)</span> <span class="op">+</span> <span class="fu">ylim</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>,<span class="fl">5</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="mcprofile_files/figure-html/wald-1.png" class="r-plt" alt="" width="700"></p>
 <p>The simultaneous confidence intervals are exactly the same as the
 ones obtained with the function <em>glht</em> in package multcomp.</p>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/multcomp/man/glht.html" class="external-link">glht</a></span><span class="op">(</span><span class="va">m2</span>, <span class="va">cm2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">##   Simultaneous Confidence Intervals</span></span>
@@ -629,7 +630,7 @@ ones obtained with the function <em>glht</em> in package multcomp.</p>
 <span><span class="co">## 1 - 0 == 0     2.7300   1.2778  4.1822</span></span>
 <span><span class="co">## 3 - 0 == 0     2.8134   1.3648  4.2620</span></span>
 <span><span class="co">## 10 - 0 == 0    2.9789   1.5366  4.4213</span></span></code></pre>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">w2</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">##    mcprofile - Confidence Intervals </span></span>
@@ -652,7 +653,7 @@ ones obtained with the function <em>glht</em> in package multcomp.</p>
 <p>At small sample sizes, the likelihood root statistic can be exchanged
 with the modified likelihood root to improve the performance of the
 confidence intervals.</p>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">h2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/hoa.html">hoa</a></span><span class="op">(</span><span class="va">p2</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">h2</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
@@ -667,7 +668,7 @@ confidence intervals.</p>
 <span><span class="co">## 0.1 - 0     1.386 -0.0428  3.23</span></span>
 <span><span class="co">## 0.3 - 0     2.159  0.8657  3.94</span></span>
 <span><span class="co">## 1 - 0       2.730  1.4878  4.49</span></span>
-<span><span class="co">## 3 - 0       2.813  1.5765  4.57</span></span>
+<span><span class="co">## 3 - 0       2.813  1.5766  4.57</span></span>
 <span><span class="co">## 10 - 0      2.979  1.7515  4.73</span></span></code></pre>
 </div>
 <div class="section level3">
@@ -679,7 +680,7 @@ are computed based on a logistic regression model. In a dose-response
 experiment the lethal effect of an insecticide is tested. The data
 example is artificially generated, based on an excerpt of a real
 experiment, assuming very small sample sizes.</p>
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">toxinLD</span><span class="op">)</span></span>
 <span><span class="va">toxinLD</span><span class="op">$</span><span class="va">logdose</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">toxinLD</span><span class="op">$</span><span class="va">dose</span><span class="op">)</span></span>
 <span><span class="fu">ggplot</span><span class="op">(</span><span class="va">toxinLD</span>, <span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">logdose</span>, y<span class="op">=</span><span class="va">dead</span><span class="op">/</span><span class="op">(</span><span class="va">dead</span><span class="op">+</span><span class="va">alive</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
@@ -688,7 +689,7 @@ experiment, assuming very small sample sizes.</p>
 <p>The dose-response curve is modeled by a logistic regression model
 with
 <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>y</mi><mi>i</mi></msub><mo>∼</mo><mi>B</mi><mi>i</mi><mi>n</mi><mi>o</mi><mi>m</mi><mi>i</mi><mi>a</mi><mi>l</mi><mo stretchy="false" form="prefix">(</mo><msub><mi>n</mi><mi>i</mi></msub><mo>,</mo><msub><mi>μ</mi><mi>i</mi></msub><mo stretchy="false" form="postfix">)</mo><mo>,</mo><mspace width="2.0em"></mspace><msub><mi>η</mi><mi>i</mi></msub><mo>=</mo><mrow><mi>log</mi><mo>⁡</mo></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><msub><mi>μ</mi><mi>i</mi></msub><mrow><mn>1</mn><mo>−</mo><msub><mi>μ</mi><mi>i</mi></msub></mrow></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo>,</mo><mspace width="2.0em"></mspace><msub><mi>η</mi><mi>i</mi></msub><mo>=</mo><msub><mi>β</mi><mn>1</mn></msub><mo>+</mo><mrow><mi>log</mi><mo>⁡</mo></mrow><mo stretchy="false" form="prefix">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo stretchy="false" form="postfix">)</mo><msub><mi>β</mi><mn>2</mn></msub><mi>.</mi></mrow><annotation encoding="application/x-tex"> y_{i} \sim Binomial(n_{i}, \mu_{i}), \qquad \eta_{i} = \log \left( \frac{\mu_{i}}{1-\mu_{i}} \right), \qquad \eta_{i} = \beta_{1} + \log (x_{i}) \beta_{2}. </annotation></semantics></math></p>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mlr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">dead</span>, <span class="va">alive</span><span class="op">)</span> <span class="op">~</span> <span class="va">logdose</span>, data<span class="op">=</span><span class="va">toxinLD</span>, family<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/stats/family.html" class="external-link">binomial</a></span><span class="op">(</span>link<span class="op">=</span><span class="st">"logit"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>The transformed parameters
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ϑ</mi><mi>k</mi></msub><mo>=</mo><msubsup><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>p</mi></msubsup><msub><mi>a</mi><mrow><mi>k</mi><mi>j</mi></mrow></msub><msub><mi>β</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">\vartheta_{k} = \sum_{j=1}^{p} a_{kj}\beta_{j}</annotation></semantics></math>
@@ -698,7 +699,7 @@ and intercept design coefficients
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>a</mi><mrow><mi>k</mi><mn>1</mn></mrow></msub><annotation encoding="application/x-tex">a_{k1}</annotation></semantics></math>.
 Predictions should be made for 20 logarithmic dose values between
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">[</mo><mi>−</mi><mn>1</mn><mo>,</mo><mn>2.3</mn><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">[-1,2.3]</annotation></semantics></math>.</p>
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pdose</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>,<span class="fl">2.3</span>, length<span class="op">=</span><span class="fl">7</span><span class="op">)</span></span>
 <span><span class="va">cmlr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/model.matrix.html" class="external-link">model.matrix</a></span><span class="op">(</span><span class="op">~</span> <span class="va">pdose</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">cmlr</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">pdose</span>, <span class="fl">2</span><span class="op">)</span></span>
@@ -710,7 +711,7 @@ Predictions should be made for 20 logarithmic dose values between
 <span><span class="co">## 0.65            1  0.65</span></span>
 <span><span class="co">## 1.2             1  1.20</span></span>
 <span><span class="co">## 1.75            1  1.75</span></span></code></pre>
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plr</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mcprofile.html">mcprofile</a></span><span class="op">(</span><span class="va">mlr</span>, <span class="va">cmlr</span><span class="op">)</span></span>
 <span><span class="va">cilr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">plr</span><span class="op">)</span></span>
 <span></span>
@@ -720,15 +721,15 @@ Predictions should be made for 20 logarithmic dose values between
 <p><img src="mcprofile_files/figure-html/lrcm-1.png" class="r-plt" alt="" width="700"></p>
 <p>The confidence bands can be presented in a graphic as a shaded area
 around the predicted curve.</p>
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pdat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>logdose<span class="op">=</span><span class="va">pdose</span><span class="op">)</span></span>
 <span><span class="va">pdat</span><span class="op">$</span><span class="va">estimate</span> <span class="op">&lt;-</span> <span class="va">mlr</span><span class="op">$</span><span class="va">family</span><span class="op">$</span><span class="fu">linkinv</span><span class="op">(</span><span class="va">cilr</span><span class="op">$</span><span class="va">estimate</span><span class="op">$</span><span class="va">Estimate</span><span class="op">)</span></span>
 <span><span class="va">pdat</span><span class="op">$</span><span class="va">lower</span> <span class="op">&lt;-</span> <span class="va">mlr</span><span class="op">$</span><span class="va">family</span><span class="op">$</span><span class="fu">linkinv</span><span class="op">(</span><span class="va">cilr</span><span class="op">$</span><span class="va">confint</span><span class="op">$</span><span class="va">lower</span><span class="op">)</span></span>
 <span><span class="va">pdat</span><span class="op">$</span><span class="va">upper</span> <span class="op">&lt;-</span> <span class="va">mlr</span><span class="op">$</span><span class="va">family</span><span class="op">$</span><span class="fu">linkinv</span><span class="op">(</span><span class="va">cilr</span><span class="op">$</span><span class="va">confint</span><span class="op">$</span><span class="va">upper</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">ggplot</span><span class="op">(</span><span class="va">toxinLD</span>, <span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">logdose</span>, y<span class="op">=</span><span class="va">dead</span><span class="op">/</span><span class="op">(</span><span class="va">dead</span><span class="op">+</span><span class="va">alive</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu">geom_ribbon</span><span class="op">(</span>data<span class="op">=</span><span class="va">pdat</span>, <span class="fu">aes</span><span class="op">(</span>y<span class="op">=</span><span class="va">estimate</span>, ymin<span class="op">=</span><span class="va">lower</span>, ymax<span class="op">=</span><span class="va">upper</span><span class="op">)</span>, size<span class="op">=</span><span class="fl">0.95</span>, fill<span class="op">=</span><span class="st">"lightblue"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_line</span><span class="op">(</span>data<span class="op">=</span><span class="va">pdat</span>, <span class="fu">aes</span><span class="op">(</span>y<span class="op">=</span><span class="va">estimate</span><span class="op">)</span>, size<span class="op">=</span><span class="fl">0.95</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_ribbon</span><span class="op">(</span>data<span class="op">=</span><span class="va">pdat</span>, <span class="fu">aes</span><span class="op">(</span>y<span class="op">=</span><span class="va">estimate</span>, ymin<span class="op">=</span><span class="va">lower</span>, ymax<span class="op">=</span><span class="va">upper</span><span class="op">)</span>, linewidth<span class="op">=</span><span class="fl">0.95</span>, fill<span class="op">=</span><span class="st">"lightblue"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_line</span><span class="op">(</span>data<span class="op">=</span><span class="va">pdat</span>, <span class="fu">aes</span><span class="op">(</span>y<span class="op">=</span><span class="va">estimate</span><span class="op">)</span>, linewidth<span class="op">=</span><span class="fl">0.95</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span>size<span class="op">=</span><span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">ylab</span><span class="op">(</span><span class="st">"Mortality rate"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="mcprofile_files/figure-html/lrciplot-1.png" class="r-plt" alt="" width="700"></p>

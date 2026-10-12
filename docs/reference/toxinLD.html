@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mcprofile</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0-1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.0-2</span>
       </span>
     </div>
 
@@ -27,6 +27,9 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul><ul class="nav navbar-nav navbar-right"></ul></div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -148,15 +151,13 @@
 <span class="r-in"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">toxinLD</span>, <span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">logdose</span>, y<span class="op">=</span><span class="va">dead</span><span class="op">/</span><span class="op">(</span><span class="va">dead</span><span class="op">+</span><span class="va">alive</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span></span>
 <span class="r-in"><span>  <span class="fu">geom_ribbon</span><span class="op">(</span>data<span class="op">=</span><span class="va">pdat</span>, <span class="fu">aes</span><span class="op">(</span>y<span class="op">=</span><span class="va">estimate</span>, ymin<span class="op">=</span><span class="va">lower</span>, ymax<span class="op">=</span><span class="va">upper</span>, </span></span>
 <span class="r-in"><span>                             fill<span class="op">=</span><span class="va">method</span>, colour<span class="op">=</span><span class="va">method</span>, linetype<span class="op">=</span><span class="va">method</span><span class="op">)</span>, </span></span>
-<span class="r-in"><span>              alpha<span class="op">=</span><span class="fl">0.1</span>, size<span class="op">=</span><span class="fl">0.95</span><span class="op">)</span> <span class="op">+</span></span></span>
-<span class="r-in"><span>  <span class="fu">geom_line</span><span class="op">(</span>data<span class="op">=</span><span class="va">pdat</span>, <span class="fu">aes</span><span class="op">(</span>y<span class="op">=</span><span class="va">estimate</span>, linetype<span class="op">=</span><span class="va">method</span><span class="op">)</span>, size<span class="op">=</span><span class="fl">0.95</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>              alpha<span class="op">=</span><span class="fl">0.1</span>, linewidth<span class="op">=</span><span class="fl">0.95</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu">geom_line</span><span class="op">(</span>data<span class="op">=</span><span class="va">pdat</span>, <span class="fu">aes</span><span class="op">(</span>y<span class="op">=</span><span class="va">estimate</span>, linetype<span class="op">=</span><span class="va">method</span><span class="op">)</span>, linewidth<span class="op">=</span><span class="fl">0.95</span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>  <span class="fu">geom_point</span><span class="op">(</span>size<span class="op">=</span><span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>  <span class="fu">geom_hline</span><span class="op">(</span>yintercept<span class="op">=</span><span class="va">ld</span>, linetype<span class="op">=</span><span class="fl">2</span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>  <span class="fu">geom_segment</span><span class="op">(</span>data<span class="op">=</span><span class="va">ldest</span>, <span class="fu">aes</span><span class="op">(</span>x<span class="op">=</span><span class="va">limit</span>, xend<span class="op">=</span><span class="va">limit</span>, y<span class="op">=</span><span class="fl">0.25</span>, yend<span class="op">=</span><span class="op">-</span><span class="fl">0.05</span>, </span></span>
-<span class="r-in"><span>                               linetype<span class="op">=</span><span class="va">method</span><span class="op">)</span>, size<span class="op">=</span><span class="fl">0.6</span>, colour<span class="op">=</span><span class="st">"grey2"</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>                               linetype<span class="op">=</span><span class="va">method</span><span class="op">)</span>, linewidth<span class="op">=</span><span class="fl">0.6</span>, colour<span class="op">=</span><span class="st">"grey2"</span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>  <span class="fu">ylab</span><span class="op">(</span><span class="st">"Mortality rate"</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Please use `linewidth` instead.</span>
 <span class="r-plt img"><img src="toxinLD-1.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
