@@ -30,7 +30,7 @@ An object of class mcprofile. The slot \code{srdp} contains the profiled signed 
 Calculates signed root deviance profiles given a \code{\link{glm}} or \code{\link{lm}} object. The profiled parameters of interest are defined by providing a contrast matrix.
 }
 \details{
-The profiles are calculates separately for each row of the contrast matrix. The profiles are calculated by constrained IRWLS optimization, implemented in function \code{orglm}, using the quadratic programming algorithm of package \code{quadprog}.
+The profiles are calculates separately for each row of the contrast matrix. The profiles are calculated by constrained IRWLS optimization, implemented in function \code{orglm}, using the quadratic programming algorithm of package \code{quadprog}. Models with aliased (\code{NA}) coefficients are not supported; refit the model without the redundant terms.
 }
 \examples{
 #######################################
