@@ -54,9 +54,9 @@ mcprofile.glm <-
 function(object, CM, control=mcprofileControl(), grid=NULL){
   aliased <- names(which(is.na(coefficients(object))))
   if (length(aliased) > 0) stop("Model has aliased (NA) coefficients: ", paste(aliased, collapse=", "), ". Refit the model without the redundant terms.")
+  if (ncol(CM) != length(coefficients(object))) stop("Equal number of contrast and model coefficients needed!")
   if (is.null(rownames(CM))) rownames(CM) <- paste("C",1:nrow(CM), sep="")
   if (is.null(colnames(CM))) colnames(CM) <- names(coefficients(object))
-  if (ncol(CM) != length(coefficients(object))) stop("Equal number of contrast and model coefficients needed!")
 
   df.needed <- family(object)$family == "gaussian" | length(grep("quasi", family(object)$family)) == 1 | length(grep("Negative Binomial", family(object)$family)) == 1
 
