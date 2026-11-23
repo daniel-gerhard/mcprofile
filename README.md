@@ -1,22 +1,25 @@
 
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/mcprofile)](https://cran.r-project.org/package=mcprofile) [![Downloads](https://cranlogs.r-pkg.org/badges/mcprofile)](https://cranlogs.r-pkg.org/)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/mcprofile)](https://CRAN.R-project.org/package=mcprofile)
+[![R-CMD-check](https://github.com/daniel-gerhard/mcprofile/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/daniel-gerhard/mcprofile/actions/workflows/R-CMD-check.yaml)
+[![Downloads](https://cranlogs.r-pkg.org/badges/mcprofile)](https://cranlogs.r-pkg.org/)
 
-mcprofile
-=========
+# mcprofile
 
-Overview
---------
+## Overview
 
-mcprofile allows you to calculate signed root deviance profiles for linear combinations of parameters in a glm. Based on these profiles, multiplicity adjusted p-values and simultaneous confidence intervals controlling the family-wise error rate are calculated.
+mcprofile allows you to calculate signed root deviance profiles for
+linear combinations of parameters in a glm. Based on these profiles,
+multiplicity adjusted p-values and simultaneous confidence intervals
+controlling the family-wise error rate are calculated.
 
-Installation
-------------
+## Installation
 
 ``` r
 # You can install mcprofile from CRAN by
 install.packages("mcprofile")
 
-# Or the the development version from GitHub:
-# install.packages("devtools")
-devtools::install_github("daniel-gerhard/mcprofile")
+# Or the development version from GitHub:
+# install.packages("pak")
+pak::pak("daniel-gerhard/mcprofile")
 ```
