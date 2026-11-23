@@ -14,6 +14,7 @@ This is an update from 1.0-1 to 1.1-0. It:
 * local: Ubuntu 26.04, R 4.6.2
 * GitHub Actions: ubuntu-latest (R-devel, R-release, R-oldrel-1),
   macos-latest (R-release), windows-latest (R-release)
+* win-builder: R-devel (2026-11-17 r90926 ucrt)
 
 ## R CMD check results
 
