@@ -70,9 +70,17 @@ test_that("confint accepts unambiguous abbreviations", {
   expect_identical(a, b)
 })
 
-test_that("summary rejects an invalid alternative", {
+test_that("summary rejects invalid alternative and adjust", {
   mc <- mcprofile(cta_fit(), dunnett(8))
-  expect_error(summary(mc, alternative = "two-sided"), "alternative has to be one of")
+  expect_error(summary(mc, alternative = "two-sided"), "should be one of")
+  expect_error(summary(mc, adjust = "tukey"), "should be one of")
+})
+
+test_that("summary accepts unambiguous abbreviations", {
+  mc <- mcprofile(cta_fit(), dunnett(8))
+  expect_identical(summary(mc, alternative = "g", adjust = "bonf"),
+                   summary(mc, alternative = "greater", adjust = "bonferroni"))
+  expect_identical(summary(mc, adjust = "holm")$adjust, "holm")
 })
 
 test_that("an interval bound outside the grid is NA", {
