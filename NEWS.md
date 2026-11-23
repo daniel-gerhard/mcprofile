@@ -40,6 +40,11 @@
 
 ## Other changes
 
+* ggplot2 is now imported instead of attached, so `library(mcprofile)` no
+  longer puts ggplot2 functions on the search path. `plot()` still returns
+  ggplot objects; call `library(ggplot2)` to modify them, for example with
+  `+ ylim(-5, 5)`.
+
 * Profiling is faster: each constrained fit solves the quadratic program once
   per iteration, and the starting values on each side of the estimate are
   chosen better.

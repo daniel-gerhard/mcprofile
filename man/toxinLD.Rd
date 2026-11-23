@@ -90,6 +90,7 @@ ldest <- data.frame(limit=c(pll, wll, hll), method=c("profile","wald", "hoa"))
 # plot of intervals and LD(25) #
 ################################
 
+library(ggplot2)
 ggplot(toxinLD, aes(x=logdose, y=dead/(dead+alive))) + 
   geom_ribbon(data=pdat, aes(y=estimate, ymin=lower, ymax=upper, 
                              fill=method, colour=method, linetype=method), 

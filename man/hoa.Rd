@@ -26,6 +26,7 @@ str(cta)
 ## change class of cta$conc into factor
 cta$concf <- factor(cta$conc, levels=unique(cta$conc))
 
+library(ggplot2)
 ggplot(cta, aes(y=foci, x=concf)) + 
   geom_boxplot() +
   geom_dotplot(binaxis = "y", stackdir = "center", binwidth = 0.2) + 

@@ -99,8 +99,9 @@ where $t_{k}$ is the observed statistic, either using $w(\cdot)$, $q(\cdot)$, or
 The mcprofile() function
 -------------------------------
 
-```{r package, echo=FALSE, message=FALSE}
+```{r package, message=FALSE}
 library(mcprofile)
+library(ggplot2)
 ```
 
 The mcprofile function needs at least two components, an object of class glm and a contrast matrix to define several linear combinations of glm coefficients.
