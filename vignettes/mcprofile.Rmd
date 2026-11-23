@@ -5,6 +5,7 @@
 
 ```{r setup, include=FALSE}
 library(knitr)
+has_multcomp <- requireNamespace("multcomp", quietly = TRUE)
 ```
 
 
@@ -156,10 +157,19 @@ The definition of a contrast matrix in mcprofile allows also to compute the same
 The functionality of the package multcomp with the *contrMat* function can be used to use several pre-defined structures for the contrast matrix.
 
 
-```{r m2profile, message=FALSE}
+```{r m2cm, message=FALSE, eval=has_multcomp}
 library(multcomp)
 (cm2 <- contrMat(table(cta$concf), type="Dunnett"))
+```
 
+```{r m2cm-base, echo=FALSE, eval=!has_multcomp}
+lev <- levels(cta$concf)
+cm2 <- cbind(-1, diag(length(lev) - 1))
+dimnames(cm2) <- list(paste(lev[-1], "-", lev[1]), lev)
+cm2
+```
+
+```{r m2profile}
 p2 <- mcprofile(m2, cm2)
 (ci <- confint(p2, adjust="none"))
 ```
@@ -230,8 +240,11 @@ plot(w2) + ylim(c(-5,5))
 ```
 
 The simultaneous confidence intervals are exactly the same as the ones obtained with the function *glht* in package multcomp.
-```{r multcomp}
+```{r multcomp, eval=has_multcomp}
 confint(glht(m2, cm2))
+```
+
+```{r waldci}
 confint(w2)
 ```
 
