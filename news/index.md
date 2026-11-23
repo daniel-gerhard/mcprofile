@@ -47,9 +47,22 @@
   `ci` from the workspace as the intervals. Unambiguous abbreviations
   such as `alternative = "g"` are now accepted.
 
+- [`summary()`](https://rdrr.io/r/base/summary.html) validates `adjust`
+  and `alternative` the same way, and also accepts unambiguous
+  abbreviations.
+
 - [`mcprofile()`](https://daniel-gerhard.github.io/mcprofile/reference/mcprofile.md)
   now gives a clear error for models with aliased (`NA`) coefficients,
   and for a contrast matrix with the wrong number of columns.
+
+- When a profile cannot be interpolated (for example with fewer than
+  four profile points),
+  [`confint()`](https://rdrr.io/r/stats/confint.html),
+  [`summary()`](https://rdrr.io/r/base/summary.html) and
+  [`plot()`](https://rdrr.io/r/graphics/plot.default.html) give one
+  warning naming the affected contrasts, whose results are `NA`.
+  Previously an error message was printed to the console without a
+  warning.
 
 ### Other changes
 

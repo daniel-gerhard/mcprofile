@@ -9,7 +9,8 @@ Multiple contrast testing based on signed root deviance profiles.
 summary(
   object,
   margin = 0,
-  adjust = "single-step",
+  adjust = c("single-step", "holm", "hochberg", "hommel", "bonferroni", "BH", "BY",
+    "fdr", "none"),
   alternative = c("two.sided", "less", "greater"),
   ...
 )
@@ -39,7 +40,7 @@ summary(
 
 - ...:
 
-  ...
+  Further arguments, currently ignored.
 
 ## Value
 

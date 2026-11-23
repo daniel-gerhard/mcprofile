@@ -26,7 +26,7 @@ confint(
 
 - parm:
 
-  Just ignore this...
+  Not used; intervals are computed for all contrasts in `object`.
 
 - level:
 
@@ -46,7 +46,7 @@ confint(
 
 - ...:
 
-  ...
+  Further arguments, currently ignored.
 
 ## Value
 
