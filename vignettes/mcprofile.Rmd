@@ -105,7 +105,7 @@ library(ggplot2)
 
 The mcprofile function needs at least two components, an object of class glm and a contrast matrix to define several linear combinations of glm coefficients.
 
-As an application example the cta dataset is used, where Balb/c 3T3 cells are treated with different concentrations of a carcinogen to test for toxicity. Cells treated with a carcinogen do not stop proliferation, hence the number of foci (cell accumulations) are used as a measure of toxicity. The number of foci is counted for 10 indipendent replicates per concentration level.
+As an application example the cta dataset is used, where Balb/c 3T3 cells are treated with different concentrations of a carcinogen to test for toxicity. Cells treated with a carcinogen do not stop proliferation, hence the number of foci (cell accumulations) are used as a measure of toxicity. The number of foci is counted for 10 independent replicates per concentration level.
 
 
 ```{r, ctadata}
@@ -119,7 +119,7 @@ ggplot(cta, aes(y=foci, x=concf)) +
    xlab("concentration")
 ```
 
-In a first analysis, the distance between dose levels is not taken into account, comparing the expectated values for each dose levels with the one of the control. A generalized linear model is fitted to the data, assuming that the number of foci is following a Poisson distribution.
+In a first analysis, the distance between dose levels is not taken into account, comparing the expected values for each dose levels with the one of the control. A generalized linear model is fitted to the data, assuming that the number of foci is following a Poisson distribution.
 
 $$ y_{i} \sim Poisson(\mu_{i}), \qquad \log(\mu_{i}) = \eta_{i}, \qquad \eta_{i} = \beta_{0} + \sum_{j=1}^{7} x_{ij}\beta_{j} $$
 
@@ -131,7 +131,7 @@ The dummy covariates $x_{ij}$ are chosen in a way, that the $\beta_{j}$ represen
 confint(m1, parm=2:8)
 ```
 
-The same confidence intervals can be reproduced with mcprofile, but using linear contrasts instead of the parms argument. With the contrast matrix a linear combination of model coefficients is defined in each row; hence in each row the coefficient of 1 refers to the position of the $\beta_{j}$ in the coefficient vector of the glm object. Names are passed down from the rownmaes of the contrast matrix.
+The same confidence intervals can be reproduced with mcprofile, but using linear contrasts instead of the `parm` argument. With the contrast matrix a linear combination of model coefficients is defined in each row; hence in each row the coefficient of 1 refers to the position of the $\beta_{j}$ in the coefficient vector of the glm object. Names are passed down from the rownames of the contrast matrix.
 
 Based on the profiles of the likelihood root, confidence intervals are calculated with the argument *adjust="none"* to control the per comparison error rate with a separate type-I-error for each comparison.
 

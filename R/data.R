@@ -15,7 +15,7 @@
 
 #'Cell transformation assay dataset
 #'
-#' Balb//c 3T3 cells are treated with different concentrations of a carcinogen. Cells treated with a carcinogen do not stop proliferation. Number of foci (cell accumulations) are counted for 10 replicates per concentration level.
+#' Balb/c 3T3 cells are treated with different concentrations of a carcinogen. Cells treated with a carcinogen do not stop proliferation. Number of foci (cell accumulations) are counted for 10 replicates per concentration level.
 #' 
 #' @format A data frame with 80 observations on the following 2 variables.
 #' \describe{
