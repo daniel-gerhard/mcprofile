@@ -1,6 +1,6 @@
 # Changelog
 
-## mcprofile 1.0-2
+## mcprofile 1.1-0
 
 ### Changes in results
 
