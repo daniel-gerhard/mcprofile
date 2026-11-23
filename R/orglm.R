@@ -85,7 +85,6 @@ orglm.fit <- function (x, y, weights = rep(1, nobs), start = NULL, etastart = NU
   linkinv <- family$linkinv
   if (!is.function(variance) || !is.function(linkinv)) stop("'family' argument seems not to be a valid family object", call. = FALSE)
   dev.resids <- family$dev.resids
-  aic <- family$aic
   mu.eta <- family$mu.eta
   unless.null <- function(x, if.null) if (is.null(x)) if.null  else x
   valideta <- unless.null(family$valideta, function(eta) TRUE)
@@ -136,15 +135,12 @@ orglm.fit <- function (x, y, weights = rep(1, nobs), start = NULL, etastart = NU
       }
       z <- (eta - offset)[good] + (y - mu)[good]/mu.eta.val[good]
       w <- sqrt((weights[good] * mu.eta.val[good]^2)/variance(mu)[good])
-      ngoodobs <- as.integer(nobs - sum(!good))      
-      fit <- orr(x[good, , drop = FALSE] * w, z * w, constr, rhs, nec)      
+      fit <- orr(x[good, , drop = FALSE] * w, z * w, constr, rhs, nec)
       if (any(!is.finite(fit$coefficients))) {
         conv <- FALSE
         warning(gettextf("non-finite coefficients at iteration %d", iter), domain = NA)
         break
       }
-      #if (nobs < fit$rank) stop(gettextf("X matrix has rank %d, but only %d observations", fit$rank, nobs), domain = NA)
-      #start[fit$pivot] <- fit$coefficients
       start <- fit$coefficients
       eta <- drop(x %*% start)
       mu <- linkinv(eta <- eta + offset)
@@ -201,20 +197,8 @@ orglm.fit <- function (x, y, weights = rep(1, nobs), start = NULL, etastart = NU
     if (family$family == "poisson") {
       if (any(mu < eps)) warning("orglm.fit: fitted rates numerically 0 occurred", call. = FALSE)
     }
-    #if (fit$rank < nvars) coef[fit$pivot][seq.int(fit$rank + 1, nvars)] <- NA
-    xxnames <- xnames#[fit$pivot]
     residuals <- (y - mu)/mu.eta(eta)
-    #fit$qr <- as.matrix(qr(x[good, , drop = FALSE] * w)$qr)
-    nr <- min(sum(good), nvars)
-    #if (nr < nvars) {
-    #  Rmat <- diag(nvars)
-    #  Rmat[1L:nr, 1L:nvars] <- fit$qr[1L:nr, 1L:nvars]
-    #} else Rmat <- fit$qr[1L:nvars, 1L:nvars]
-    #Rmat <- as.matrix(Rmat)
-    #Rmat[row(Rmat) > col(Rmat)] <- 0
     names(coef) <- xnames
-    #colnames(fit$qr) <- xxnames
-    #dimnames(Rmat) <- list(xxnames, xxnames)
   }
   names(residuals) <- ynames
   names(mu) <- ynames
@@ -224,14 +208,12 @@ orglm.fit <- function (x, y, weights = rep(1, nobs), start = NULL, etastart = NU
   names(wt) <- ynames
   names(weights) <- ynames
   names(y) <- ynames
-  #if (!EMPTY) names(fit$effects) <- c(xxnames[seq_len(fit$rank)], rep.int("", sum(good) - fit$rank))
   wtdmu <- if (intercept) sum(weights * y)/sum(weights) else linkinv(offset)
   nulldev <- sum(dev.resids(y, wtdmu, weights))
   n.ok <- nobs - sum(weights == 0)
   nulldf <- n.ok - as.integer(intercept)
-  fit$rank <- rank <- if (EMPTY) 0 else qr(x)$rank
+  rank <- if (EMPTY) 0 else qr(x)$rank
   resdf <- n.ok - rank
-  #aic.model <- aic(y, n, mu, weights, dev) + 2 * rank
   fit <- list(coefficients = coef, residuals = residuals, fitted.values = mu, rank=rank, family = family, linear.predictors = eta, deviance = dev, null.deviance = nulldev, iter = iter, weights = wt, prior.weights = weights, df.residual = resdf, df.null = nulldf, y = y, X=x, converged = conv, boundary = boundary, aic=NA, constr=constr, rhs=rhs, nec=nec)
   class(fit) <- c("orglm", "glm", "lm")
   return(fit)
