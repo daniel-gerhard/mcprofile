@@ -4,12 +4,14 @@
 \name{toxinLD}
 \alias{toxinLD}
 \title{Identifying the lethal dose of a crop protection product.}
-\format{A data frame with 6 observations on the following 3 variables.
+\format{
+A data frame with 6 observations on the following 3 variables.
 \describe{
   \item{\code{dose}}{a numeric vector denoting the toxin concentration levels}
   \item{\code{dead}}{a numeric vector with the number of dead insects.}
   \item{\code{alive}}{a numeric vector with the number of surviving insects.}
-}}
+}
+}
 \usage{
 toxinLD
 }

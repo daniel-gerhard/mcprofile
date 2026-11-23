@@ -4,11 +4,13 @@
 \name{cta}
 \alias{cta}
 \title{Cell transformation assay dataset}
-\format{A data frame with 80 observations on the following 2 variables.
+\format{
+A data frame with 80 observations on the following 2 variables.
 \describe{
   \item{\code{conc}}{a numeric vector denoting the concentration levels}
   \item{\code{foci}}{a numeric vector with the number of foci}
-}}
+}
+}
 \usage{
 cta
 }

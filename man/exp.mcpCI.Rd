@@ -18,6 +18,8 @@ Exponential transformation of confidence interval estimates in mcpCI objects.
 \seealso{
 \code{\link{exp}}, \code{\link{confint.mcprofile}}
 
-Other confidence interval transformations: \code{\link{expit.mcpCI}}
+Other confidence interval transformations:
+\code{\link[=expit]{expit()}}
 }
+\concept{confidence interval transformations}
 \keyword{misc}

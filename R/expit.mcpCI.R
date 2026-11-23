@@ -26,6 +26,7 @@
 #' ## simultaneous confidence intervals on the probability scale
 #' (pci <- expit(ci))
 #' plot(pci)
+#' @rdname expit.mcpCI
 
 expit <- function(x) UseMethod("expit")
 

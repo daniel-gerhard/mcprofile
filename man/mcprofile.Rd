@@ -8,11 +8,9 @@
 \usage{
 mcprofile(object, CM, control = mcprofileControl(), grid = NULL)
 
-\method{mcprofile}{glm}(object, CM, control = mcprofileControl(),
-  grid = NULL)
+\method{mcprofile}{glm}(object, CM, control = mcprofileControl(), grid = NULL)
 
-\method{mcprofile}{lm}(object, CM, control = mcprofileControl(),
-  grid = NULL)
+\method{mcprofile}{lm}(object, CM, control = mcprofileControl(), grid = NULL)
 }
 \arguments{
 \item{object}{An object of class \code{\link{glm}} or \code{\link{lm}}}
@@ -68,4 +66,5 @@ plot(ci)
 \seealso{
 \code{\link[MASS]{profile.glm}}, \code{\link[multcomp]{glht}}, \code{\link[multcomp]{contrMat}}, \code{\link{confint.mcprofile}}, \code{\link{summary.mcprofile}}, \code{\link[quadprog]{solve.QP}}
 }
+\concept{mcprofile}
 \keyword{misc}
