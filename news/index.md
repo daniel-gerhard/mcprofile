@@ -2,6 +2,8 @@
 
 ## mcprofile 1.1-0
 
+CRAN release: 2026-11-23
+
 ### Changes in results
 
 - [`hoa()`](https://daniel-gerhard.github.io/mcprofile/reference/hoa.md)
