@@ -5,6 +5,7 @@ output:
 ---
 
 [![CRAN status](https://www.r-pkg.org/badges/version/mcprofile)](https://CRAN.R-project.org/package=mcprofile)
+[![R-CMD-check](https://github.com/daniel-gerhard/mcprofile/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/daniel-gerhard/mcprofile/actions/workflows/R-CMD-check.yaml)
 [![Downloads](https://cranlogs.r-pkg.org/badges/mcprofile)](https://cranlogs.r-pkg.org/)
  
 
