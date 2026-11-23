@@ -19,12 +19,8 @@ function(object, parm, level=0.95, adjust=c("single-step","none","bonferroni"), 
   CM <- object$CM
   df <- object$df
   cr <- NULL
-  sdlist <- object$srdp  
-  spl <- lapply(sdlist, function(x){
-    x <- na.omit(x)
-    try(interpSpline(x[,1], x[,2]))
-  })
-  
+  spl <- profile_splines(object$srdp, CM)
+
   if (adjust == "none" | nrow(CM) == 1){
     if (alternative == "two.sided") alpha <- (1-level)/2 else alpha <- 1-level
     if (is.null(df)) quant <- qnorm(1-alpha) else quant <- qt(1-alpha, df=df)

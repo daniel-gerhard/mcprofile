@@ -22,11 +22,7 @@ function(object, margin=0, adjust=c("single-step", "holm", "hochberg", "hommel",
   est <- coefficients(object$object)
   df <- object$df
   ##### Find stats
-  sdlist <- object$srdp
-  spl <- lapply(sdlist, function(x){
-    x <- na.omit(x)
-    try(interpSpline(x[,1], x[,2]))
-  })
+  spl <- profile_splines(object$srdp, CM)
   ptest <- function(spl, delta){
     pst <- try(predict(spl, delta)$y, silent=TRUE)
     if (inherits(pst, "try-error")) NA else pst   

@@ -31,9 +31,10 @@ plot.mcprofile <- function(x, ...){
   z1 <- unlist(lapply(sdlist, function(x) x[,2]))
   sdd <- data.frame(b=b1, z=z1, grp)
 
-  spl <- lapply(sdlist, function(x){
-    x <- na.omit(x)
-    sp <- try(interpSpline(x[,1], x[,2]))
+  splines <- profile_splines(sdlist, CM)
+  spl <- lapply(seq_along(sdlist), function(i){
+    x <- na.omit(sdlist[[i]])
+    sp <- splines[[i]]
     bcoord <- seq(min(x[,1]), max(x[,1]), length=200)
     preds <- if (inherits(sp, "try-error")) rep(NA, 200) else predict(sp, x=bcoord)$y
     data.frame(b=bcoord, z=preds)
