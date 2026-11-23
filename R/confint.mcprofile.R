@@ -3,11 +3,11 @@
 #' Calculates simultaneous confidence intervals based on signed root deviance profiles from function \code{\link{mcprofile}}.
 #' 
 #' @param object An object of class mcprofile
-#' @param parm Just ignore this...
+#' @param parm Not used; intervals are computed for all contrasts in \code{object}.
 #' @param level Simultaneous confidence level (1-alpha), default at 0.95
 #' @param adjust a character string specifying the adjustment for multiplicity. "single-step" controlling the FWER utilising a multivariate normal- or t-distribution; "none" for comparison-wise error rate; "bonferroni" applying a Bonferroni correction.
 #' @param alternative a character string specifying if two- or one-sided confidence intervals should be computed
-#' @param ... ...
+#' @param ... Further arguments, currently ignored.
 #' @return An object of class mcpCI
 #' @seealso \code{\link[MASS]{confint.glm}}, \code{\link{mcprofile}}, \code{\link[multcomp]{confint.glht}}
 #' @keywords htest
@@ -21,7 +21,7 @@ function(object, parm, level=0.95, adjust=c("single-step","none","bonferroni"), 
   cr <- NULL
   spl <- profile_splines(object$srdp, CM)
 
-  if (adjust == "none" | nrow(CM) == 1){
+  if (adjust == "none" || nrow(CM) == 1){
     if (alternative == "two.sided") alpha <- (1-level)/2 else alpha <- 1-level
     if (is.null(df)) quant <- qnorm(1-alpha) else quant <- qt(1-alpha, df=df)
   }
@@ -29,7 +29,7 @@ function(object, parm, level=0.95, adjust=c("single-step","none","bonferroni"), 
     if (alternative == "two.sided") alpha <- (1-level)/2 else alpha <- 1-level
     if (is.null(df)) quant <- qnorm(1-alpha/nrow(CM)) else quant <- qt(1-alpha/nrow(CM), df=df)
   }
-  if (adjust == "single-step" & nrow(CM) > 1){
+  if (adjust == "single-step" && nrow(CM) > 1){
     vc <- vcov(object$object)
     VC <- CM %*% vc %*% t(CM)
     d <- 1/sqrt(diag(VC))

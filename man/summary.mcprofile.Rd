@@ -22,7 +22,7 @@
 
 \item{alternative}{a character string specifying the alternative hypothesis.}
 
-\item{...}{...}
+\item{...}{Further arguments, currently ignored.}
 }
 \value{
 An object of class mcpSummary

@@ -6,7 +6,7 @@
 #' @param margin test margin, specifying the right hand side of the hypotheses.
 #' @param adjust a character string specifying the adjustment for multiplicity. "single-step" controlling the FWER utilizing a multivariate normal- or t-distribution; "none" for comparison-wise error rate, or any other method provided by \code{\link{p.adjust}}.
 #' @param alternative a character string specifying the alternative hypothesis.
-#' @param ... ...
+#' @param ... Further arguments, currently ignored.
 #' 
 #' @return An object of class mcpSummary
 #' 
