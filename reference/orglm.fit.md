@@ -93,7 +93,7 @@ orglm.fit(
 
 - nec:
 
-  Number of equality constrints. The first `nec` constraints defined in
+  Number of equality constraints. The first `nec` constraints defined in
   `constr` are treated as equality constraints; the remaining ones are
   inequality constraints.
 

@@ -311,7 +311,7 @@ glm coefficients.</p>
 cells are treated with different concentrations of a carcinogen to test
 for toxicity. Cells treated with a carcinogen do not stop proliferation,
 hence the number of foci (cell accumulations) are used as a measure of
-toxicity. The number of foci is counted for 10 indipendent replicates
+toxicity. The number of foci is counted for 10 independent replicates
 per concentration level.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">cta</span><span class="op">)</span></span>
@@ -328,7 +328,7 @@ per concentration level.</p>
 <span>   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">xlab</a></span><span class="op">(</span><span class="st">"concentration"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="mcprofile_files/figure-html/ctadata-1.png" class="r-plt" alt="" width="100%"></p>
 <p>In a first analysis, the distance between dose levels is not taken
-into account, comparing the expectated values for each dose levels with
+into account, comparing the expected values for each dose levels with
 the one of the control. A generalized linear model is fitted to the
 data, assuming that the number of foci is following a Poisson
 distribution.</p>
@@ -365,13 +365,13 @@ represent differences of each dose levels to the intercept
 <span><span class="co">## concf3     1.8132747 4.227184</span></span>
 <span><span class="co">## concf10    1.9860194 4.389347</span></span></code></pre>
 <p>The same confidence intervals can be reproduced with mcprofile, but
-using linear contrasts instead of the parms argument. With the contrast
-matrix a linear combination of model coefficients is defined in each
-row; hence in each row the coefficient of 1 refers to the position of
-the
+using linear contrasts instead of the <code>parm</code> argument. With
+the contrast matrix a linear combination of model coefficients is
+defined in each row; hence in each row the coefficient of 1 refers to
+the position of the
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>β</mi><mi>j</mi></msub><annotation encoding="application/x-tex">\beta_{j}</annotation></semantics></math>
 in the coefficient vector of the glm object. Names are passed down from
-the rownmaes of the contrast matrix.</p>
+the rownames of the contrast matrix.</p>
 <p>Based on the profiles of the likelihood root, confidence intervals
 are calculated with the argument <em>adjust=“none”</em> to control the
 per comparison error rate with a separate type-I-error for each

@@ -192,7 +192,7 @@ As an application example the cta dataset is used, where Balb/c 3T3
 cells are treated with different concentrations of a carcinogen to test
 for toxicity. Cells treated with a carcinogen do not stop proliferation,
 hence the number of foci (cell accumulations) are used as a measure of
-toxicity. The number of foci is counted for 10 indipendent replicates
+toxicity. The number of foci is counted for 10 independent replicates
 per concentration level.
 
 ``` r
@@ -218,8 +218,8 @@ ggplot(cta, aes(y=foci, x=concf)) +
 ![](mcprofile_files/figure-html/ctadata-1.png)
 
 In a first analysis, the distance between dose levels is not taken into
-account, comparing the expectated values for each dose levels with the
-one of the control. A generalized linear model is fitted to the data,
+account, comparing the expected values for each dose levels with the one
+of the control. A generalized linear model is fitted to the data,
 assuming that the number of foci is following a Poisson distribution.
 
 ``` math
@@ -264,11 +264,11 @@ confint(m1, parm=2:8)
     ## concf10    1.9860194 4.389347
 
 The same confidence intervals can be reproduced with mcprofile, but
-using linear contrasts instead of the parms argument. With the contrast
+using linear contrasts instead of the `parm` argument. With the contrast
 matrix a linear combination of model coefficients is defined in each
 row; hence in each row the coefficient of 1 refers to the position of
 the $`\beta_{j}`$ in the coefficient vector of the glm object. Names are
-passed down from the rownmaes of the contrast matrix.
+passed down from the rownames of the contrast matrix.
 
 Based on the profiles of the likelihood root, confidence intervals are
 calculated with the argument *adjust=“none”* to control the per
