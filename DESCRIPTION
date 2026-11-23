@@ -1,18 +1,16 @@
 Package: mcprofile
 Title: Testing Generalized Linear Hypotheses for Generalized Linear Model Parameters by Profile Deviance
-Date: 2026-10-12
-Version: 1.0-2
+Version: 1.1-0
 Authors@R: c(person("Daniel", "Gerhard", role = c("aut", "cre"),
 		     email = "00gerhard@gmail.com"))
-Maintainer: Daniel Gerhard <00gerhard@gmail.com>
 Description: Calculation of signed root deviance profiles for linear combinations of parameters in a generalized linear model. Multiple tests and simultaneous confidence intervals are provided.
-Depends: R (>= 3.1.0), ggplot2 (>= 3.4.0)
-Imports: quadprog, mvtnorm, splines
-LazyLoad: yes
+Depends: R (>= 4.1.0)
+Imports: ggplot2 (>= 3.4.0), quadprog, mvtnorm, splines
 LazyData: yes
+Encoding: UTF-8
 License: GPL (>=2)
 URL: https://daniel-gerhard.github.io/mcprofile/
 VignetteBuilder: knitr
-Suggests: knitr, markdown, multcomp, MASS, testthat (>= 3.0.0)
+Suggests: knitr, rmarkdown, multcomp, MASS, testthat (>= 3.0.0)
 Config/testthat/edition: 3
-RoxygenNote: 6.0.1
+Config/roxygen2/version: 8.1.1

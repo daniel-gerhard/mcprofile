@@ -1,7 +1,8 @@
 export(mcprofile, wald, hoa, mcprofileControl, expit)
 #exportClasses("mcprofile", "mcpCI", "mcpSummary", "mcprofileControl")
 
-import(ggplot2)
+importFrom("ggplot2", aes, facet_wrap, geom_errorbar, geom_hline, geom_line,
+           geom_point, ggplot, xlab, ylab)
 importFrom("quadprog", solve.QP)
 importFrom("splines", interpSpline)
 importFrom("mvtnorm", pmvnorm, pmvt, qmvnorm, qmvt)

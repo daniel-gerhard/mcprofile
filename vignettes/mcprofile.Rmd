@@ -1,16 +1,16 @@
-<!--
-%\VignetteEngine{knitr::knitr}
-%\VignetteIndexEntry{An introduction to the mcprofile package}
--->
+---
+title: "An introduction to the mcprofile package"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{An introduction to the mcprofile package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
 
 ```{r setup, include=FALSE}
-library(knitr)
+knitr::opts_chunk$set(fig.width = 7, fig.height = 5, out.width = "100%")
+has_multcomp <- requireNamespace("multcomp", quietly = TRUE)
 ```
-
-
-
-An introduction to the mcprofile package
-========================================
 
 
 Motivation
@@ -98,8 +98,9 @@ where $t_{k}$ is the observed statistic, either using $w(\cdot)$, $q(\cdot)$, or
 The mcprofile() function
 -------------------------------
 
-```{r package, echo=FALSE, message=FALSE}
+```{r package, message=FALSE}
 library(mcprofile)
+library(ggplot2)
 ```
 
 The mcprofile function needs at least two components, an object of class glm and a contrast matrix to define several linear combinations of glm coefficients.
@@ -156,10 +157,19 @@ The definition of a contrast matrix in mcprofile allows also to compute the same
 The functionality of the package multcomp with the *contrMat* function can be used to use several pre-defined structures for the contrast matrix.
 
 
-```{r m2profile, message=FALSE}
+```{r m2cm, message=FALSE, eval=has_multcomp}
 library(multcomp)
 (cm2 <- contrMat(table(cta$concf), type="Dunnett"))
+```
 
+```{r m2cm-base, echo=FALSE, eval=!has_multcomp}
+lev <- levels(cta$concf)
+cm2 <- cbind(-1, diag(length(lev) - 1))
+dimnames(cm2) <- list(paste(lev[-1], "-", lev[1]), lev)
+cm2
+```
+
+```{r m2profile}
 p2 <- mcprofile(m2, cm2)
 (ci <- confint(p2, adjust="none"))
 ```
@@ -181,7 +191,7 @@ plot(ci)
 The confidence intervals are shown on the scale of the linear predictor. The mcprofile package contains an *exp* method to transform the scale. Further ggplot2 functions can be used to change the plot layout.
 ```{r plot3}
 plot(exp(ci)) + 
-  coord_trans(x="log") +
+  scale_x_log10() +
   geom_vline(xintercept=1, lty=2)
 ```
 
@@ -189,7 +199,7 @@ plot(exp(ci)) +
 
 ### Modifying the profile support grid
 
-As the default, the grid with support points, for which contrast coefficient values the profile statistics are calculated, is defined automatically. With the argument \texttt{grid}, a matrix with support points in each column defines the sequence of points in the parameter space of the contrast parameters defined in each row of the contrast matrix.
+As the default, the grid with support points, for which contrast coefficient values the profile statistics are calculated, is defined automatically. With the argument `grid`, a matrix with support points in each column defines the sequence of points in the parameter space of the contrast parameters defined in each row of the contrast matrix.
 
 For example, the profiles can be calculated for a range of 15 support values between $[-3, 5]$.
 ```{r grid, warning=FALSE}
@@ -204,14 +214,14 @@ plot(p3)
 
 ### Simultaneous confidence intervals and multiple testing
 
-The default, when using the \texttt{confint} function, is to adjust for multiplicity by a single-step method, calculating a quantile of a multivariate normal or *t*-distribution. As an alternative the multiplicity adjustment by the Bonferroni method is available.
+The default, when using the `confint` function, is to adjust for multiplicity by a single-step method, calculating a quantile of a multivariate normal or *t*-distribution. As an alternative the multiplicity adjustment by the Bonferroni method is available.
 
 ```{r ci1}
 (ci2 <- confint(p2, adjust="single-step"))
 ```
 
 
-Compatible tests are available with the *summary* method. Here, further multiple testing adjustment is available through the function \texttt{p.adjust}. A single test margin can be specified to define the Null-hypotheses together with a test direction.
+Compatible tests are available with the *summary* method. Here, further multiple testing adjustment is available through the function `p.adjust`. A single test margin can be specified to define the Null-hypotheses together with a test direction.
 A test if the difference of the average log-number of foci is larger than 1 for any concentration level compared to the control can be calculated by
 ```{r test1}
 summary(p2, margin=1, alternative="greater")
@@ -230,8 +240,11 @@ plot(w2) + ylim(c(-5,5))
 ```
 
 The simultaneous confidence intervals are exactly the same as the ones obtained with the function *glht* in package multcomp.
-```{r multcomp}
+```{r multcomp, eval=has_multcomp}
 confint(glht(m2, cm2))
+```
+
+```{r waldci}
 confint(w2)
 ```
 
@@ -299,7 +312,7 @@ ggplot(toxinLD, aes(x=logdose, y=dead/(dead+alive))) +
 
 
 References
-=====================
+-------------------
 
 * Alessandra R. Brazzale and Anthony C. Davison. Accurate parametric inference for small samples. *Statistical Science*, **23**(4):465--484, 2008. doi:10.1214/08-STS273.
 

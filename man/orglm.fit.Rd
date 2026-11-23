@@ -4,9 +4,21 @@
 \alias{orglm.fit}
 \title{Fitting Order-Restricted Generalized Linear Models}
 \usage{
-orglm.fit(x, y, weights = rep(1, nobs), start = NULL, etastart = NULL,
-  mustart = NULL, offset = rep(0, nobs), family = gaussian(),
-  control = list(), intercept = TRUE, constr, rhs, nec)
+orglm.fit(
+  x,
+  y,
+  weights = rep(1, nobs),
+  start = NULL,
+  etastart = NULL,
+  mustart = NULL,
+  offset = rep(0, nobs),
+  family = gaussian(),
+  control = list(),
+  intercept = TRUE,
+  constr,
+  rhs,
+  nec
+)
 }
 \arguments{
 \item{x}{is a design matrix of dimension \code{n * p}}

@@ -4,12 +4,14 @@
 \name{aphidlight}
 \alias{aphidlight}
 \title{Aphid attraction at different light intensities}
-\format{A data frame with 36 observations on the following 3 variables.
+\format{
+A data frame with 36 observations on the following 3 variables.
 \describe{
  \item{\code{light}}{a numeric vector denoting the concentration levels}
  \item{\code{black}}{a numeric vector with the number of aphids remaining in the box.}
  \item{\code{green}}{a numeric vector with the number of attracted aphids}
-}}
+}
+}
 \usage{
 aphidlight
 }

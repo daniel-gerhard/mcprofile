@@ -8,11 +8,9 @@
 \usage{
 mcprofile(object, CM, control = mcprofileControl(), grid = NULL)
 
-\method{mcprofile}{glm}(object, CM, control = mcprofileControl(),
-  grid = NULL)
+\method{mcprofile}{glm}(object, CM, control = mcprofileControl(), grid = NULL)
 
-\method{mcprofile}{lm}(object, CM, control = mcprofileControl(),
-  grid = NULL)
+\method{mcprofile}{lm}(object, CM, control = mcprofileControl(), grid = NULL)
 }
 \arguments{
 \item{object}{An object of class \code{\link{glm}} or \code{\link{lm}}}
@@ -41,6 +39,7 @@ str(cta)
 ## change class of cta$conc into factor
 cta$concf <- factor(cta$conc, levels=unique(cta$conc))
 
+library(ggplot2)
 ggplot(cta, aes(y=foci, x=concf)) + 
   geom_boxplot() +
   geom_dotplot(binaxis = "y", stackdir = "center", binwidth = 0.2) +  
@@ -53,9 +52,11 @@ ggplot(cta, aes(y=foci, x=concf)) +
 fm <- glm(foci ~ concf-1, data=cta, family=poisson(link="log"))
 
 ### Comparing each dose to the control by Dunnett-type comparisons
-# Constructing contrast matrix
-library(multcomp)
-CM <- contrMat(table(cta$concf), type="Dunnett")
+# Constructing contrast matrix, the same as
+# multcomp::contrMat(table(cta$concf), type = "Dunnett")
+lev <- levels(cta$concf)
+CM <- cbind(-1, diag(length(lev) - 1))
+dimnames(CM) <- list(paste(lev[-1], "-", lev[1]), lev)
 
 # calculating signed root deviance profiles
 (dmcp <- mcprofile(fm, CM))
@@ -68,4 +69,5 @@ plot(ci)
 \seealso{
 \code{\link[MASS]{profile.glm}}, \code{\link[multcomp]{glht}}, \code{\link[multcomp]{contrMat}}, \code{\link{confint.mcprofile}}, \code{\link{summary.mcprofile}}, \code{\link[quadprog]{solve.QP}}
 }
+\concept{mcprofile}
 \keyword{misc}

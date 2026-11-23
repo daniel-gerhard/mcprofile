@@ -1,5 +1,8 @@
 url: https://daniel-gerhard.github.io/mcprofile/
 
+template:
+  bootstrap: 5
+
 reference:
 - title: mcprofile
   desc: Constructing profiles for linear combinations of generalised linear model coefficients 

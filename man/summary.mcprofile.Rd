@@ -4,8 +4,13 @@
 \alias{summary.mcprofile}
 \title{Multiple Testing of General Hypotheses}
 \usage{
-\method{summary}{mcprofile}(object, margin = 0, adjust = "single-step",
-  alternative = c("two.sided", "less", "greater"), ...)
+\method{summary}{mcprofile}(
+  object,
+  margin = 0,
+  adjust = "single-step",
+  alternative = c("two.sided", "less", "greater"),
+  ...
+)
 }
 \arguments{
 \item{object}{an object of class mcprofile}

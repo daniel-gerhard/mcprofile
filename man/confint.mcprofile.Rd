@@ -4,9 +4,14 @@
 \alias{confint.mcprofile}
 \title{Simultaneous Confidence Intervals for Multiple Contrast Profiles}
 \usage{
-\method{confint}{mcprofile}(object, parm, level = 0.95,
+\method{confint}{mcprofile}(
+  object,
+  parm,
+  level = 0.95,
   adjust = c("single-step", "none", "bonferroni"),
-  alternative = c("two.sided", "less", "greater"), ...)
+  alternative = c("two.sided", "less", "greater"),
+  ...
+)
 }
 \arguments{
 \item{object}{An object of class mcprofile}
