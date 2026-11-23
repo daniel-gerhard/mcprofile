@@ -24,8 +24,8 @@ function(X, Y, W, etastart, O, fam, glmcontrol, est, OriginalDeviance, Dispersio
       z[i] <- zz
       pmi[i,] <- fm$coefficients
       obj[[i]] <- fm
-      if (fm$converged == TRUE & oeta[i] == FALSE) etavec <- X %*% fm$coefficients
-      if (oeta[i] == TRUE) etavec <- etastart
+      if (isTRUE(fm$converged) && !oeta[i]) etavec <- X %*% fm$coefficients
+      if (oeta[i]) etavec <- etastart
     } else {
       z[i] <- NA
       obj[[i]] <- NA

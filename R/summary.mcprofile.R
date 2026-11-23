@@ -6,7 +6,7 @@
 #' @param margin test margin, specifying the right hand side of the hypotheses.
 #' @param adjust a character string specifying the adjustment for multiplicity. "single-step" controlling the FWER utilizing a multivariate normal- or t-distribution; "none" for comparison-wise error rate, or any other method provided by \code{\link{p.adjust}}.
 #' @param alternative a character string specifying the alternative hypothesis.
-#' @param ... ...
+#' @param ... Further arguments, currently ignored.
 #' 
 #' @return An object of class mcpSummary
 #' 
@@ -15,19 +15,14 @@
 #' @keywords htest
 
 summary.mcprofile <-
-function(object, margin=0, adjust="single-step", alternative=c("two.sided","less","greater"), ...){
+function(object, margin=0, adjust=c("single-step", "holm", "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr", "none"), alternative=c("two.sided","less","greater"), ...){
+  adjust <- match.arg(adjust)
+  alternative <- match.arg(alternative)
   CM <- object$CM
   est <- coefficients(object$object)
   df <- object$df
-  if (!(alternative[1] %in% c("two.sided", "less", "greater"))) stop("alternative has to be one of 'two.sided', 'less', or 'greater'")
-  pam <- c("holm", "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr", "none")  
-  if (!(adjust[1] %in% c(pam, "single-step"))) stop(paste("adjust has to be one of:", paste(c(pam, "single-step"), collapse=", ")))
   ##### Find stats
-  sdlist <- object$srdp
-  spl <- lapply(sdlist, function(x){
-    x <- na.omit(x)
-    try(interpSpline(x[,1], x[,2]))
-  })
+  spl <- profile_splines(object$srdp, CM)
   ptest <- function(spl, delta){
     pst <- try(predict(spl, delta)$y, silent=TRUE)
     if (inherits(pst, "try-error")) NA else pst   
@@ -36,7 +31,7 @@ function(object, margin=0, adjust="single-step", alternative=c("two.sided","less
   naid <- is.na(stat)
   stat[is.na(stat)] <- 0
   if (is.null(df)){
-    switch(alternative[1], less = {
+    switch(alternative, less = {
       praw <- pnorm(stat, lower.tail=TRUE)
     }, greater = {
       praw <- pnorm(stat, lower.tail=FALSE)
@@ -44,7 +39,7 @@ function(object, margin=0, adjust="single-step", alternative=c("two.sided","less
       praw <- pmin(1, pnorm(abs(stat), lower.tail=FALSE)*2)
     })
   } else {
-    switch(alternative[1], less = {
+    switch(alternative, less = {
       praw <- pt(stat, df=df, lower.tail=TRUE)
     }, greater = {
       praw <- pt(stat, df=df, lower.tail=FALSE)
@@ -53,9 +48,9 @@ function(object, margin=0, adjust="single-step", alternative=c("two.sided","less
     })
   }
   if (length(praw) > 1){
-    if (adjust[1] %in% pam) padj <- p.adjust(praw, method=adjust[1])
+    if (adjust != "single-step") padj <- p.adjust(praw, method=adjust)
     pfct <- function(q) {
-      switch(alternative[1], two.sided = {
+      switch(alternative, two.sided = {
        low <- rep(-abs(q), dim)
        upp <- rep(abs(q), dim)
       }, less = {
@@ -71,7 +66,7 @@ function(object, margin=0, adjust="single-step", alternative=c("two.sided","less
        pmvt(lower = low, upper = upp, df=df, corr = cr)
       }
     }
-    if (adjust[1] == "single-step"){
+    if (adjust == "single-step"){
       vc <- vcov(object$object)
       VC <- CM %*% vc %*% t(CM)
       d <- 1/sqrt(diag(VC))
@@ -98,9 +93,8 @@ function(object, margin=0, adjust="single-step", alternative=c("two.sided","less
   out$p.values <- padj
   out$margin <- margin
   out$estimate = est
-  out$alternative <- alternative[1]
-  out$adjust <- adjust[1]
-  #out$cr <- cr
+  out$alternative <- alternative
+  out$adjust <- adjust
   out$df <- df
   class(out) <- "mcpSummary"
   return(out)

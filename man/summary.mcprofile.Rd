@@ -7,7 +7,8 @@
 \method{summary}{mcprofile}(
   object,
   margin = 0,
-  adjust = "single-step",
+  adjust = c("single-step", "holm", "hochberg", "hommel", "bonferroni", "BH", "BY",
+    "fdr", "none"),
   alternative = c("two.sided", "less", "greater"),
   ...
 )
@@ -21,7 +22,7 @@
 
 \item{alternative}{a character string specifying the alternative hypothesis.}
 
-\item{...}{...}
+\item{...}{Further arguments, currently ignored.}
 }
 \value{
 An object of class mcpSummary

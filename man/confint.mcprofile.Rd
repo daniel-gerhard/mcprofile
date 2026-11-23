@@ -16,7 +16,7 @@
 \arguments{
 \item{object}{An object of class mcprofile}
 
-\item{parm}{Just ignore this...}
+\item{parm}{Not used; intervals are computed for all contrasts in \code{object}.}
 
 \item{level}{Simultaneous confidence level (1-alpha), default at 0.95}
 
@@ -24,7 +24,7 @@
 
 \item{alternative}{a character string specifying if two- or one-sided confidence intervals should be computed}
 
-\item{...}{...}
+\item{...}{Further arguments, currently ignored.}
 }
 \value{
 An object of class mcpCI

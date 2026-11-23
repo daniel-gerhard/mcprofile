@@ -61,7 +61,8 @@ function(object, CM, control=mcprofileControl(), grid=NULL){
   if (is.null(rownames(CM))) rownames(CM) <- paste("C",1:nrow(CM), sep="")
   if (is.null(colnames(CM))) colnames(CM) <- names(coefficients(object))
 
-  df.needed <- family(object)$family == "gaussian" | length(grep("quasi", family(object)$family)) == 1 | length(grep("Negative Binomial", family(object)$family)) == 1
+  famname <- family(object)$family
+  df.needed <- famname == "gaussian" || grepl("quasi", famname) || grepl("Negative Binomial", famname)
 
   ## construct grid
   if (is.null(grid)) grid <- constructGrid(object, CM, control)

@@ -35,8 +35,16 @@
   an unrelated object called `ci` from the workspace as the intervals.
   Unambiguous abbreviations such as `alternative = "g"` are now accepted.
 
+* `summary()` validates `adjust` and `alternative` the same way, and also
+  accepts unambiguous abbreviations.
+
 * `mcprofile()` now gives a clear error for models with aliased (`NA`)
   coefficients, and for a contrast matrix with the wrong number of columns.
+
+* When a profile cannot be interpolated (for example with fewer than four
+  profile points), `confint()`, `summary()` and `plot()` give one warning
+  naming the affected contrasts, whose results are `NA`. Previously an error
+  message was printed to the console without a warning.
 
 ## Other changes
 

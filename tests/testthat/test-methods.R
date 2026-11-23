@@ -43,3 +43,14 @@ test_that("print methods produce output", {
   expect_output(print(confint(mc)), "Confidence Intervals")
   expect_output(print(summary(mc)), "Multiple Testing")
 })
+
+test_that("a profile that cannot be interpolated gives one warning and NA", {
+  mc <- mcprofile(cta_fit(), dunnett(8)[1:3, ])
+  mc$srdp[[2]] <- mc$srdp[[2]][1, , drop = FALSE]
+  expect_warning(ci <- confint(mc)$confint, "results are NA for:\n  C3-C1: ")
+  expect_true(all(is.na(ci[2, ])) && !anyNA(ci[-2, ]))
+  expect_warning(p <- summary(mc)$p.values, "C3-C1")
+  expect_true(is.na(p[2]) && !anyNA(p[-2]))
+  expect_warning(plot(mc), "C3-C1")
+  expect_silent(confint(mcprofile(cta_fit(), dunnett(8))))
+})
