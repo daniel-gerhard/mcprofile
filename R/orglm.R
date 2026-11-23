@@ -18,7 +18,7 @@
 #' @param intercept logical. Should an intercept be included in the \emph{null} model?
 #' @param constr a matrix with linear constraints. The columns of this matrix should correspond to the columns of the design matrix.
 #' @param rhs right hand side of the linear constraint formulation. A numeric vector with a length corresponding to the rows of \code{constr}.
-#' @param nec Number of equality constrints. The first \code{nec} constraints defined in \code{constr} are treated as equality constraints; the remaining ones are inequality constraints.
+#' @param nec Number of equality constraints. The first \code{nec} constraints defined in \code{constr} are treated as equality constraints; the remaining ones are inequality constraints.
 #' 
 #' @return An object of class \code{"glm"} is a list containing at least the following components:
 #' \describe{

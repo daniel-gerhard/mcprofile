@@ -45,7 +45,7 @@ orglm.fit(
 
 \item{rhs}{right hand side of the linear constraint formulation. A numeric vector with a length corresponding to the rows of \code{constr}.}
 
-\item{nec}{Number of equality constrints. The first \code{nec} constraints defined in \code{constr} are treated as equality constraints; the remaining ones are inequality constraints.}
+\item{nec}{Number of equality constraints. The first \code{nec} constraints defined in \code{constr} are treated as equality constraints; the remaining ones are inequality constraints.}
 }
 \value{
 An object of class \code{"glm"} is a list containing at least the following components:
